@@ -1,0 +1,5 @@
+C:\Users\echowdhr\Desktop\SDT CODE\3.0\SDTLogger\bin\Debug\SDTLogger.dll
+C:\Users\echowdhr\Desktop\SDT CODE\3.0\SDTLogger\bin\Debug\SDTLogger.pdb
+C:\Users\echowdhr\Desktop\SDT CODE\3.0\SDTLogger\bin\Debug\log4net.dll
+C:\Users\echowdhr\Desktop\SDT CODE\3.0\SDTLogger\obj\Debug\SDTLogger.dll
+C:\Users\echowdhr\Desktop\SDT CODE\3.0\SDTLogger\obj\Debug\SDTLogger.pdb
