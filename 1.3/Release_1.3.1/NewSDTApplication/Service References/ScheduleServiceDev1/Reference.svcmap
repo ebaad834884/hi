@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5fcc1c0a-d246-480f-a85d-abf2ece8b870" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://gehc-dev1.cloud.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ScheduleService.wsdl" MetadataType="Wsdl" ID="bc88f1d4-f868-4f10-875b-2cea4bfdba83" SourceId="1" SourceUrl="https://gehc-dev1.cloud.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="W6ScheduleService.wsdl" MetadataType="Wsdl" ID="028e7150-e9c2-4bd5-893d-941436c31dd6" SourceId="1" SourceUrl="https://gehc-dev1.cloud.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?wsdl" />
+    <MetadataFile FileName="ScheduleService.xsd" MetadataType="Schema" ID="aac117e5-6207-4612-9e7d-b50198a8f7d6" SourceId="1" SourceUrl="https://gehc-dev1.cloud.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ScheduleService.disco" MetadataType="Disco" ID="a4170cb7-6cd8-4662-8569-9de9b4bbf49c" SourceId="1" SourceUrl="https://gehc-dev1.cloud.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

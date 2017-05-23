@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:ckswopt="http://www.clicksoftware.com/OptionalParameters" xmlns:tns="http://www.clicksoftware.com" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.clicksoftware.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.clicksoftware.com/Imports">
+      <xsd:import schemaLocation="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?xsd=xsd0" namespace="http://www.clicksoftware.com" />
+    </xsd:schema>
+    <xs:schema xmlns="http://www.clicksoftware.com/OptionalParameters" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.clicksoftware.com/OptionalParameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="OptionalParameters">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CallerIdentity" type="xs:string" />
+            <xs:element name="ErrorOnNonExistingDictionaries" type="xs:boolean" />
+            <xs:element name="ExtraData">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="Item">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="Key" type="xs:string" />
+                        <xs:element name="Value" type="xs:string" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ScheduleService_IncludeLunchInAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:IncludeLunchInAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_IncludeLunchInAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncludeLunchInAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExcludeLunchFromAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExcludeLunchFromAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExcludeLunchFromAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExcludeLunchFromAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RescheduleLunchStart_InputMessage">
+    <wsdl:part name="parameters" element="tns:RescheduleLunchStart" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RescheduleLunchStart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RescheduleLunchStartResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ReportActualLunch_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportActualLunch" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ReportActualLunch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportActualLunchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAppointmentsProfileIntervals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppointmentsProfileIntervals" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAppointmentsProfileIntervals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppointmentsProfileIntervalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetBVFUnit_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBVFUnit" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetBVFUnit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBVFUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerTaskOperations_InputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerTaskOperations" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerTaskOperations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerTaskOperationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateRelocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRelocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateRelocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateRelocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteRelocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRelocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteRelocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRelocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateRelocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRelocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateRelocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRelocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateCrewAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCrewAllocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateCrewAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCrewAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteCrewAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCrewAllocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteCrewAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCrewAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetCrewAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCrewAllocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetCrewAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCrewAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateCrewAllocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCrewAllocation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateCrewAllocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCrewAllocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DragAndDropAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DragAndDropAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DragAndDropAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DragAndDropAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskCheckRules_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskCheckRules" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskCheckRules_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskCheckRulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetGanttObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGanttObjects" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetGanttObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGanttObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskList" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ScheduleTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleTasks" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ScheduleTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CommitTasksSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommitTasksSchedule" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CommitTasksSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitTasksScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTravelTimes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTravelTimes" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTravelTimes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTravelTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetEngineersDynamicProperties_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEngineersDynamicProperties" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetEngineersDynamicProperties_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEngineersDynamicPropertiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetNextStatusTransition_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextStatusTransition" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetNextStatusTransition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextStatusTransitionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetEngineersCrewAllocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEngineersCrewAllocations" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetEngineersCrewAllocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEngineersCrewAllocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CheckRulesEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRulesEx" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CheckRulesEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRulesExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetOutboxMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutboxMessages" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetOutboxMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutboxMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetDraftMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDraftMessages" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetDraftMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDraftMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetInboxMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInboxMessages" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetInboxMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInboxMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMessages" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetSchedulePolicy_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchedulePolicy" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetSchedulePolicy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchedulePolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RunSchedulingWorkflow_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunSchedulingWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RunSchedulingWorkflow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunSchedulingWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RunScheduleUpdate_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunScheduleUpdate" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_RunScheduleUpdate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunScheduleUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetLunchInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLunchInformation" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetLunchInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLunchInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAssignments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignments" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAssignments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssignmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetResourceSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceSchedule" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetResourceSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskSchedulingOptions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskSchedulingOptions" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskSchedulingOptions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskSchedulingOptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CheckRules_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRules" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CheckRules_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckRulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointments_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointments" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointmentsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointmentsEx" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointmentsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointmentsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointmentsEx2_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointmentsEx2" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ExtendedGetAppointmentsEx2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendedGetAppointmentsEx2Response" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAppointments_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppointments" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetAppointments_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAppointmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ProcessTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ProcessTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ProcessTaskEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessTaskEx" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ProcessTaskEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ProcessTaskExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskAssignment_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAssignment" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskAssignmentEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAssignmentEx" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTaskAssignmentEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskAssignmentExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ScheduleIdleResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleIdleResource" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_ScheduleIdleResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleIdleResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskCandidates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskCandidates" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTaskCandidates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskCandidatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_DeleteTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UpdateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_CreateTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasks" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_GetTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UnscheduleTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnscheduleTask" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UnscheduleTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnscheduleTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UnscheduleTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnscheduleTasks" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_UnscheduleTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnscheduleTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerUpgrade_InputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerUpgrade" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerUpgrade_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerUpgradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_MegaTaskUpdateOrAdd_InputMessage">
+    <wsdl:part name="parameters" element="tns:MegaTaskUpdateOrAdd" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_MegaTaskUpdateOrAdd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MegaTaskUpdateOrAddResponse" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerTaskGet_InputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerTaskGet" />
+  </wsdl:message>
+  <wsdl:message name="ScheduleService_BundlerTaskGet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BundlerTaskGetResponse" />
+  </wsdl:message>
+  <wsdl:message name="OptionalParameters">
+    <wsdl:part name="Header" element="ckswopt:OptionalParameters" />
+  </wsdl:message>
+  <wsdl:portType name="ScheduleService">
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" message="tns:ScheduleService_IncludeLunchInAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignmentResponse" message="tns:ScheduleService_IncludeLunchInAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" message="tns:ScheduleService_ExcludeLunchFromAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignmentResponse" message="tns:ScheduleService_ExcludeLunchFromAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" message="tns:ScheduleService_RescheduleLunchStart_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStartResponse" message="tns:ScheduleService_RescheduleLunchStart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" message="tns:ScheduleService_ReportActualLunch_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ReportActualLunchResponse" message="tns:ScheduleService_ReportActualLunch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" message="tns:ScheduleService_GetAppointmentsProfileIntervals_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervalsResponse" message="tns:ScheduleService_GetAppointmentsProfileIntervals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" message="tns:ScheduleService_GetBVFUnit_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetBVFUnitResponse" message="tns:ScheduleService_GetBVFUnit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" message="tns:ScheduleService_BundlerTaskOperations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperationsResponse" message="tns:ScheduleService_BundlerTaskOperations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateRelocation" message="tns:ScheduleService_CreateRelocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateRelocationResponse" message="tns:ScheduleService_CreateRelocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" message="tns:ScheduleService_DeleteRelocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteRelocationResponse" message="tns:ScheduleService_DeleteRelocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" message="tns:ScheduleService_UpdateRelocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateRelocationResponse" message="tns:ScheduleService_UpdateRelocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" message="tns:ScheduleService_CreateCrewAllocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocationResponse" message="tns:ScheduleService_CreateCrewAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" message="tns:ScheduleService_DeleteCrewAllocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocationResponse" message="tns:ScheduleService_DeleteCrewAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" message="tns:ScheduleService_GetCrewAllocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetCrewAllocationResponse" message="tns:ScheduleService_GetCrewAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" message="tns:ScheduleService_UpdateCrewAllocation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocationResponse" message="tns:ScheduleService_UpdateCrewAllocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" message="tns:ScheduleService_DragAndDropAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignmentResponse" message="tns:ScheduleService_DragAndDropAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" message="tns:ScheduleService_UpdateTaskCheckRules_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRulesResponse" message="tns:ScheduleService_UpdateTaskCheckRules_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" message="tns:ScheduleService_GetGanttObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetGanttObjectsResponse" message="tns:ScheduleService_GetGanttObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskList" message="tns:ScheduleService_GetTaskList_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskListResponse" message="tns:ScheduleService_GetTaskList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" message="tns:ScheduleService_ScheduleTasks_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ScheduleTasksResponse" message="tns:ScheduleService_ScheduleTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" message="tns:ScheduleService_CommitTasksSchedule_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CommitTasksScheduleResponse" message="tns:ScheduleService_CommitTasksSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" message="tns:ScheduleService_GetTravelTimes_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTravelTimesResponse" message="tns:ScheduleService_GetTravelTimes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" message="tns:ScheduleService_GetEngineersDynamicProperties_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicPropertiesResponse" message="tns:ScheduleService_GetEngineersDynamicProperties_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" message="tns:ScheduleService_GetNextStatusTransition_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransitionResponse" message="tns:ScheduleService_GetNextStatusTransition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" message="tns:ScheduleService_GetEngineersCrewAllocations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocationsResponse" message="tns:ScheduleService_GetEngineersCrewAllocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" message="tns:ScheduleService_CheckRulesEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CheckRulesExResponse" message="tns:ScheduleService_CheckRulesEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/SendMessage" message="tns:ScheduleService_SendMessage_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/SendMessageResponse" message="tns:ScheduleService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" message="tns:ScheduleService_GetOutboxMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetOutboxMessagesResponse" message="tns:ScheduleService_GetOutboxMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" message="tns:ScheduleService_GetDraftMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetDraftMessagesResponse" message="tns:ScheduleService_GetDraftMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" message="tns:ScheduleService_GetInboxMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetInboxMessagesResponse" message="tns:ScheduleService_GetInboxMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteMessages" message="tns:ScheduleService_DeleteMessages_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteMessagesResponse" message="tns:ScheduleService_DeleteMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" message="tns:ScheduleService_GetSchedulePolicy_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicyResponse" message="tns:ScheduleService_GetSchedulePolicy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" message="tns:ScheduleService_RunSchedulingWorkflow_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflowResponse" message="tns:ScheduleService_RunSchedulingWorkflow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" message="tns:ScheduleService_RunScheduleUpdate_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdateResponse" message="tns:ScheduleService_RunScheduleUpdate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" message="tns:ScheduleService_GetLunchInformation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetLunchInformationResponse" message="tns:ScheduleService_GetLunchInformation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAssignment" message="tns:ScheduleService_GetAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAssignmentResponse" message="tns:ScheduleService_GetAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateAssignment" message="tns:ScheduleService_CreateAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateAssignmentResponse" message="tns:ScheduleService_CreateAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" message="tns:ScheduleService_DeleteAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteAssignmentResponse" message="tns:ScheduleService_DeleteAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" message="tns:ScheduleService_UpdateAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateAssignmentResponse" message="tns:ScheduleService_UpdateAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAssignments" message="tns:ScheduleService_GetAssignments_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAssignmentsResponse" message="tns:ScheduleService_GetAssignments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" message="tns:ScheduleService_GetResourceSchedule_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetResourceScheduleResponse" message="tns:ScheduleService_GetResourceSchedule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" message="tns:ScheduleService_GetTaskSchedulingOptions_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptionsResponse" message="tns:ScheduleService_GetTaskSchedulingOptions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CheckRules" message="tns:ScheduleService_CheckRules_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CheckRulesResponse" message="tns:ScheduleService_CheckRules_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" message="tns:ScheduleService_ExtendedGetAppointments_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsResponse" message="tns:ScheduleService_ExtendedGetAppointments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" message="tns:ScheduleService_ExtendedGetAppointmentsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsExResponse" message="tns:ScheduleService_ExtendedGetAppointmentsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" message="tns:ScheduleService_ExtendedGetAppointmentsEx2_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2Response" message="tns:ScheduleService_ExtendedGetAppointmentsEx2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAppointments" message="tns:ScheduleService_GetAppointments_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetAppointmentsResponse" message="tns:ScheduleService_GetAppointments_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ProcessTask" message="tns:ScheduleService_ProcessTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ProcessTaskResponse" message="tns:ScheduleService_ProcessTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" message="tns:ScheduleService_ProcessTaskEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ProcessTaskExResponse" message="tns:ScheduleService_ProcessTaskEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" message="tns:ScheduleService_UpdateTaskAssignment_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentResponse" message="tns:ScheduleService_UpdateTaskAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" message="tns:ScheduleService_UpdateTaskAssignmentEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentExResponse" message="tns:ScheduleService_UpdateTaskAssignmentEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" message="tns:ScheduleService_ScheduleIdleResource_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResourceResponse" message="tns:ScheduleService_ScheduleIdleResource_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" message="tns:ScheduleService_GetTaskCandidates_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskCandidatesResponse" message="tns:ScheduleService_GetTaskCandidates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTask" message="tns:ScheduleService_GetTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTaskResponse" message="tns:ScheduleService_GetTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteTask" message="tns:ScheduleService_DeleteTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/DeleteTaskResponse" message="tns:ScheduleService_DeleteTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTask" message="tns:ScheduleService_UpdateTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UpdateTaskResponse" message="tns:ScheduleService_UpdateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateTask" message="tns:ScheduleService_CreateTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/CreateTaskResponse" message="tns:ScheduleService_CreateTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTasks" message="tns:ScheduleService_GetTasks_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/GetTasksResponse" message="tns:ScheduleService_GetTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" message="tns:ScheduleService_UnscheduleTask_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UnscheduleTaskResponse" message="tns:ScheduleService_UnscheduleTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" message="tns:ScheduleService_UnscheduleTasks_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/UnscheduleTasksResponse" message="tns:ScheduleService_UnscheduleTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" message="tns:ScheduleService_BundlerUpgrade_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerUpgradeResponse" message="tns:ScheduleService_BundlerUpgrade_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" message="tns:ScheduleService_MegaTaskUpdateOrAdd_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAddResponse" message="tns:ScheduleService_MegaTaskUpdateOrAdd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" message="tns:ScheduleService_BundlerTaskGet_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ScheduleService/BundlerTaskGetResponse" message="tns:ScheduleService_BundlerTaskGet_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

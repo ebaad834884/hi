@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<dropdown>
+
+
+  <FSE>
+
+    <FseData>
+      <optionValue>0</optionValue>
+      <optionText>Any FE</optionText>
+
+    </FseData>
+
+    <FseData>
+      <optionValue>0</optionValue>
+      <optionText>None</optionText>
+    </FseData>
+
+    <FseData>
+      <optionValue>1</optionValue>
+      <optionText>Level 1</optionText>
+    </FseData>
+
+    <FseData>
+      <optionValue>2</optionValue>
+      <optionText>Level 2</optionText>
+    </FseData>
+
+    <FseData>
+      <optionValue>3</optionValue>
+      <optionText>Level 3</optionText>
+    </FseData>
+
+    <FseData>
+      <optionValue>4</optionValue>
+      <optionText>Level 4</optionText>
+    </FseData>
+
+  </FSE>
+  <CancelTaskValuesInSDT>
+    <CancelTaskValues>
+      <optionValue>0</optionValue>
+      <optionText>Select</optionText>
+
+    </CancelTaskValues>
+    <CancelTaskValues>
+      <optionValue>1</optionValue>
+      <optionText>Appointment cancelled by customer</optionText>
+
+    </CancelTaskValues>
+    <CancelTaskValues>
+      <optionValue>2</optionValue>
+      <optionText>Job fixed by customer</optionText>
+
+    </CancelTaskValues>
+    <CancelTaskValues>
+      <optionValue>3</optionValue>
+      <optionText>Job fixed remotely by FSE</optionText>
+
+    </CancelTaskValues>
+    <CancelTaskValues>
+      <optionValue>4</optionValue>
+      <optionText>Other</optionText>
+
+    </CancelTaskValues>
+  </CancelTaskValuesInSDT>
+
+</dropdown>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NewSDTApplication.Models.Product>
+
+@{
+    ViewBag.Title = "GetProducts";
+}
+
+<h2>GetProducts</h2>
+
+<h2>Get Products</h2>
+<table style="background-color:lightcoral">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (@Model p in Model)
+        {
+            <tr>
+                <td>@p.ProductId</td>
+                <td>@p.Name</td>
+                <td>@p.Description</td>
+                <td>@p.Category</td>
+                <td>@p.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.DropDownList("selectedCategory", new SelectList(
+            new[] { "All" }.Concat(Enum.GetNames(typeof(Category)))))
+        <button type="submit">Submit</button>
+    </div>
+}
+

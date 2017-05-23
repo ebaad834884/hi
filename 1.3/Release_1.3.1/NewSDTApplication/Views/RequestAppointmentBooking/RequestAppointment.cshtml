@@ -1,0 +1,1154 @@
+﻿@{
+    ViewBag.Title = "RequestAppointmentBooking";
+}
+
+<div class="x_title">
+    <h2 style="padding-top:30px;padding-bottom:30px;">RequestAppointmentBooking</h2>
+
+    <div class="clearfix"></div>
+</div>
+
+@*<link href="~/Content/css/datatables/css/demo_table.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/demo_table_jui.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="~/Content/jqgrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />*@
+
+<!-- The jQuery library is a prerequisite for all jqSuite products -->
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/custom.css" rel="stylesheet" />
+
+<script src="~/Content/js/jquery.min.js"></script>
+<!-- This is the Javascript file of jqGrid -->
+<script src="~/Scripts/JQGrid/jquery.jqGrid.min.js"></script>
+<!-- This is the localization file of the grid controlling messages, labels, etc. -->
+<!-- We support more than 40 localizations -->
+<script src="~/Scripts/JQGrid/grid.locale-en.js"></script>
+<!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+<link href="~/Content/jqgrid/jquery-ui.css" rel="stylesheet" />
+<!-- The link to the CSS that the grid needs -->
+<link href="~/Content/jqgrid/ui.jqgrid.css" rel="stylesheet" />
+<style>
+    .ui-pg-input .ui-corner-all {
+        color: black;
+    }
+
+    .button, input, optgroup, select, textarea {
+        color: black;
+        font: inherit;
+        margin: 0;
+    }
+    /*body {
+        overflow: hidden;
+    }*/
+</style>
+<div class="x_content">
+    <table id="tb_Appointments" class="table table-striped responsive-utilities jambo_table"></table>
+    <div id="tb_Appointments_pager"></div>
+
+    <br />
+    <div class="col-md-12 col-sm-12 col-xs-12 form-group ctnc">
+        @if (Session["taskStatus"] == "Exists")
+        {
+            <button type="button" class="btn btn-warning" id="btnCreateTask">
+                <i class="fa fa-ban"></i> Modify Visit
+            </button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-info" id="btnCreateTask">
+                <i class="fa fa-ban"></i> Create Visit
+            </button>
+
+        }
+
+        @*<button type="button" class="btn btn-info" id="btnCreateTask">
+                <i class="fa fa-ban"></i> Create Visit
+            </button>*@
+        @*<button type="button" class="btn btn-danger">
+                <i class="fa fa-ban"></i> Cancel
+            </button>*@
+
+        <button type="button" class="btn btn-info" id="btnReqExtnSlot">
+            <i class="fa fa-ban"></i> Request Extended Slots
+        </button>
+        <button type="button" class="btn btn-info" id="BtnShowData" style="display:none;">
+            <i class="fa fa-ban"></i> Task Details
+        </button>
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</div>
+<style>
+    body {
+        background: #fff !important;
+    }
+
+
+
+    #tb_Appointments td[aria-describedby="tb_Appointments_score"] {
+        font-size: 14px !important;
+    }
+</style>
+<div class="modal fade" id="modal-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+
+            <div class="modal-body" id="text">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-Details">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Warning</h4>
+            </div>
+
+            <div class="modal-body" id="TaskDetails" style="overflow-y: auto;height: 350px;">
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-ReloadToIndex">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+
+            <div class="modal-body" id="textINdex">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="ReloadToIndex" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /popup Model for create &  modify  in bump task -->
+<div class="modal fade" id="modal-modifyBumpTask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Warning!</h4>
+            </div>
+
+            <div class="modal-body" id="modifyTaskDetails" style="overflow-y: auto;height: 350px;">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="modifyBumpTaskClick">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modify Task</h4>
+            </div>
+
+            <div class="modal-body" id="modifypop">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="ModifyNoDepTask" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="modifytask">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-modifyPart1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modify Task</h4>
+            </div>
+
+            <div class="modal-body" id="modifyPartPopup">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="modifyTaskModel">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /popup Model for Modify Task if System or Site Dependencies -->
+<div class="modal fade" id="modal-modifysitesystem">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modify Task</h4>
+            </div>
+
+            <div class="modal-body" id="modifypopsitesystem">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" id="ModifyYesDepTask">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //history.pushState(null, null, 'pagename');
+    //window.addEventListener('popstate', function (event) {
+    //    //history.pushState(null, null, 'pagename');
+    //});
+    //Disable Back Button In All Browsers.
+    //    function DisableBackButtonAllBrowsers() {
+    //        window.history.forward()
+    //    };
+    //    DisableBackButtonAllBrowsers();
+    //    window.onload = DisableBackButtonAllBrowsers;
+    //    window.onpageshow =
+    //function (evts) {
+    //    if (evts.persisted) DisableBackButtonAllBrowsers();
+    //};
+    //    window.onunload =
+    //function () { void (0) };
+
+
+
+    $(document).ready(function myfunction() {
+        var appWindow = "";
+        var rowsToColor = [];
+        var wdth = "1350";
+        $('#tb_Appointments').jqGrid({
+            url: '/RequestAppointmentBooking/GetAppointments/',
+            datatype: "json",
+            contentType: "application/json; charset-utf-8",
+            mtype: 'GET',
+            //height:200,340
+            height: 400,
+            autowidth: true,
+            scrollOffset: 0,
+            sortable: true,
+            //colNames: ['Score', 'Date', 'App Start', 'App Finish', 'Tentative FSE', 'Travel Time', 'Required FSE', 'SLA', 'Working'],
+            // colNames: ['Score', 'Date', 'App Start', 'App Finish', 'TentativeFse', 'SSOID', 'SLA', 'Working', 'Bump'],
+
+            // Bump column name changed to Bump Task added by Phani Kanth P.
+            colNames: ['Score', 'Date', 'App Start', 'App Finish', 'SLA', 'Working', 'Bump Task', 'Status', 'SSOID', 'TentativeFse', 'Required FSE', 'Schedulingpolicy'],
+            colModel: [
+                  { name: 'score', index: 'score', "hidden": true, width: 15, sortable: true, formatter: formatScore, unformat: unformatScore, sorttype: 'int' },
+
+                  { name: 'date', index: 'date', width: 25, sortable: true, sorttype: sortingDate, formatter: 'date', formatoptions: { srcformat: "m/d/Y h:i A", newformat: "d-M-y,D" } },
+                  { name: 'AppStart', index: 'AppStart', width: 25, sortable: true, sorttype: sortTime },
+                  { name: 'AppFinish', index: 'AppFinish', width: 25, sortable: true, sorttype: sortTime },
+
+                  { name: 'SLA', index: 'SLA', width: 25 },
+                  { name: 'Working', index: 'Working', width: 25, "formatter": formatWorking, "unformat": unformatWorking },
+                  { name: 'Bump', index: 'Bump', width: 25 },
+                   { name: 'TaskStatus', index: 'TaskStatus', width: 25 },
+                  { name: 'SSOID', index: 'SSOID', width: 70, "hidden": true },
+
+
+                      { name: 'TentativeFse', index: 'TentativeFse', width: 70, "hidden": true },
+               // { name: 'travelTime', index: 'travelTime', width: 30, "hidden": true },
+                  { name: 'RequiredFse', index: 'RequiredFse', width: 30, formatter: "checkbox", "hidden": true },
+                   { name: 'Schedulingpolicy', index: 'Schedulingpolicy', width: 25, "hidden": true }
+
+
+            ],
+
+            rowNum: 10,
+            rowTotal: 2000,
+            rowList: [10, 20, 30, 50],
+            loadonce: true,
+            rownumbers: true,
+            rownumWidth: 30,
+            gridview: true,
+            pager: '#tb_Appointments_pager',
+            sortname: 'id',
+            viewrecords: true,
+            sortorder: "asc",
+            onInitGrid: function () {
+
+                appWindow = '@Session["SelectedProfile"]';
+            },
+            gridComplete: function () {
+
+                var recs = $("#tb_Appointments").getGridParam("records");
+                if (recs == 0 || recs == null) {
+                    $("#btnCreateTask").attr("disabled", "disabled");
+                    // $("#btnReqExtnSlot").attr("disabled", "disabled");
+                }
+                else {
+                    $("#btnCreateTask").removeAttr('disabled');
+                    $("#btnReqExtnSlot").removeAttr("disabled", "disabled");
+                }
+                //$("#tb_Appointments").setCell(rowid, 'Bump', '', '', { 'title': 'Double Click To Check Bump Task Details' });
+                //To make the text bold which appear at the Footer.
+                $('#tb_Appointments_pager_left').css({ "font-weight": "900", "text-align": "left", "width": "600px" });
+                // $('#tb_Appointments_pager_right').css("font-weight", "bold");
+                if (appWindow != "") {
+                    $('#tb_Appointments_pager_left').text("Early Start : " + "@Session["SelectEarlyStart"]" + " " + " Late Start : " + "@Session["SelectLateStart"]" + "  " + "Window : " + " @Session["SelectedProfile"]");
+
+                }
+
+                else if (appWindow == "") {
+                    $('#tb_Appointments_pager_left').text("Early Start : " + "@Session["SelectEarlyStart"]" + " " + " Late Start : " + "@Session["SelectLateStart"]");
+
+                }
+
+                // $('#tb_Appointments_pager_right').text("Appointment window : " + "@Session["SelectedProfile"]");
+
+                for (var i = 0; i < rowsToColor.length; i++) {
+                    var status = (grid.jqGrid('getCell', rowKey, 'TaskStatus'));
+                    if (status == "Tentative") {
+                        $("#" + rowsToColor[i]).find("td").css("background-color", "Blue");
+                        $("#" + rowsToColor[i]).find("td").css("color", "silver");
+                    }
+
+                    else if (status == "Assigned") {
+                        $("#" + rowsToColor[i]).find("td").css("background-color", "Yellow");
+                        $("#" + rowsToColor[i]).find("td").css("color", "silver");
+                    }
+
+                }
+            },
+
+            caption: "Proposed Slots for appointment",
+            onSelectRow: function (id, status) {
+
+                var rowData = $(this).getRowData(id);
+
+                // Add this
+                var ch = $(this).find('#' + id + ' input[type=checkbox]').prop('disabled');
+                if (ch) {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('disabled', false);
+                } else {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('checked', true);
+                }
+                // end Add
+                rowChecked = 1;
+                currentrow = id;
+            },
+            beforeSelectRow: function (rowId, e) {
+                var pageSize = $(this).getGridParam('rowNum');
+                for (var i = 0; i <= pageSize; i++) {
+                    if (i != rowId) {
+                        var rowData = $(this).getRowData(i);
+                        jQuery(this).find('#' + i + ' input[type=checkbox]').prop('disabled', true);
+                        jQuery(this).find('#' + i + ' input[type=checkbox]').prop('checked', false);
+                    }
+
+                }
+
+
+            },
+
+            ondblClickRow: function (id, status) {
+                $('#BtnShowData').click();
+            }
+
+        });
+
+        //to allign the Caption at the center.
+        $('#tb_Appointments').closest("div.ui-jqgrid-view")
+           .children("div.ui-jqgrid-titlebar")
+           .css("text-align", "center")
+           .children("span.ui-jqgrid-title")
+           .css("float", "none");
+
+        function sortingDate(cellValue, options, rowObject) {
+
+            return Date.parse(cellValue);
+        }
+        function sortTime(cellValue, options, rowObject) {
+            var date = new Date('01/01/1970 ' + cellValue);
+            return Date.parse(date);
+        }
+        function format(cellValue, options, rowObject) {
+            var imageHtml = "<input type=\"checkbox\" name=\"vehicle\"  >"
+            return imageHtml;
+        }
+        function unformat(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+        function formatScore(cellValue, options, rowObject) {
+            var color = (parseInt(cellValue) > 900) ? "green" : "red";
+            var cellHtml = "<span style='background-color:" + color + ";width:100%' originalValue='" +
+                               cellValue + "'>" + cellValue + "</span>";
+
+            return cellHtml;
+
+
+
+        }
+
+        function unformatScore(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+        function formatWorking(cellValue, options, rowObject) {
+            var color = (cellValue == 'Normal') ? "green" : "red";
+            var cellHtml = "<span style='color:" + color + "' originalValue='" +
+                     cellValue + "'>" + cellValue + "</span>";
+
+
+            return cellHtml;
+        }
+        function unformatWorking(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+
+        //function getSelectedRow() {
+        //    var grid = $("#tb_Appointments");
+        //    var rowKey = grid.jqGrid('getGridParam', "selrow");
+
+        //    if (rowKey) {
+        //        celValue = grid.jqGrid('getCell', rowKey, 'RequiredFSE');
+        //        alert("RequiredFSE is: " + celValue);
+        //    }
+        //    else
+        //        alert("No rows are selected");
+        //}
+        // $("#tb_Appointments_rn").remove();
+    });
+
+
+
+    $("#modifyBumpTaskClick").click(function (e) {
+        var Exists = "@Session["taskStatus"]";
+        jQuery('#modal-modifyBumpTask').modal('hide')
+        var grid = $("#tb_Appointments");
+        var rowKey = grid.jqGrid('getGridParam', "selrow");
+        if (rowKey != null) {
+            var date, appStart, appFinish, requiredFse, Schedulingpolicy;
+            if (rowKey) {
+
+                var dateGrid = (grid.jqGrid('getCell', rowKey, 'date')).split(',')
+                var dataToPost = {
+                    date: dateGrid[0],
+                    appStart: grid.jqGrid('getCell', rowKey, 'AppStart'),
+                    appFinish: grid.jqGrid('getCell', rowKey, 'AppFinish'),
+                    requiredFse: grid.jqGrid('getCell', rowKey, 'RequiredFSE'),
+                    Schedulingpolicy: grid.jqGrid('getCell', rowKey, 'Schedulingpolicy')
+
+
+                };
+            }
+            //celValue = grid.jqGrid('getCell', rowKey, 'requiredFse');
+            //alert("RequiredFSE is: " + celValue);
+
+            //alert("In the event");
+            e.preventDefault(); // <------------------ stop default behaviour of button
+            var element = this;
+            $.ajax({
+                url: "/RequestAppointmentBooking/ProcessTsk",
+                type: "POST",
+                data: dataToPost,
+                success: function (data) {
+                    //alert(data.message);
+                    if (data.message == "Success") {
+                        //alert("1");
+                        //alert("Task No: " + data.TaskID + " has been created successfully.");
+                        //<------------ submit form
+                        jQuery('#modal-ReloadToIndex').modal('show')
+
+                        if (data.JobType == "Part") {
+                            if (Exists == "Exists") {
+                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been modified successfully.")
+                            }
+                            else {
+                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been created successfully.")
+                            }
+                        }
+                        else {
+                            if (data.taskStatus == "0") {
+                                $("#textINdex").html("Task No: " + data.TaskID + " has been created successfully.")
+                            }
+                            else {
+                                $("#textINdex").html("Task No: " + data.TaskID + " has been updated successfully.")
+                            }
+                        }
+                    }
+                    else {
+                        //alert("Error occurs while creating the Task!");
+                        jQuery('#modal-2').modal('show')
+                        $("#text").html("Error occurs while creating the Task! (Exception:" + data.message + ")")
+                    }
+                },
+                error: function () {
+                    // alert("An error has occured!!!");
+                    jQuery('#modal-2').modal('show')
+                    $("#text").html("An error has occured!!!")
+                }
+            });
+        }
+        else {
+            jQuery('#modal-2').modal('show')
+            $("#text").html("Please select a record!!!")
+        }
+
+    })
+
+
+
+    var sitecount = "@Session["SiteCountActual"]";
+    var systemcount = "@Session["SystemCountActual"]";
+    var SSOID1Validate = false;
+
+    function ModifyMainAndPartValidations() {
+
+        var gES = "@Session["OldModifiedES"]";
+        var gLS = "@Session["OldModifiedLS"]";
+
+        var gTaskNotes = "@Session["gTaskNotes"]";
+        var gduration = "@Session["OldTaskgduration"]";
+        var fseskills = "@Session["fseskills"]";
+
+        var NewgES = "";
+        var NewgLS = "";
+        if (installtype == "Installation") {
+            NewgES = "@Session["SelectInstallEarlyStart"]";
+        } else {
+            NewgES = "@Session["SelectEarlyStart"]";
+            NewgLS = "@Session["SelectLateStart"]";
+        }
+
+        var Newgduration = "@Session["SDTHomeDuration"]";
+        var NewgTaskNotes = "@Session["SDTHomeTaskNotes"]";
+        var Newfseskills = "@Session["SDTHomeFseSkill"]";
+        var task = "";
+
+        var installtype = "@Session["Installation"]";
+        ////Added code taskduration(days+hrs) for installation job
+
+        var sart = "";
+        var late = "";
+
+        if (installtype == "Installation") {
+            task = "Task Duration : " + Newgduration;
+            sart = "Task Start Date Time : " + NewgES;
+        }
+        else {
+            sart = "Early Start : " + NewgES;
+            late = "Late Start : " + NewgLS;
+            task = "Task Duration : " + Newgduration;
+        }
+
+        var fseskills1;
+        if (fseskills != Newfseskills) {
+            //if ($("#Skillfse1").val() != 0) {
+            //    fseskills1 = "Skill Level : " + "Level " + $("#Skillfse1").val();
+            //} else {
+            //    fseskills1 = "Skill Level : " + "Any FE";
+            //}
+            fseskills1 = "Skill Level : " + Newfseskills;
+            //} else {
+            if ($("#Skillfse1 option:selected").html() == 'None') {
+                fseskills1 = "";
+            }
+        } else {
+            fseskills1 = "";
+        }
+
+
+        var tNotes = "Task Notes : " + NewgTaskNotes;
+        var ssoid1 = "@Session["SDTHomeSSOFse1"]";
+        //if (myselect != null)
+
+        if (ssoid1 != "") {
+            SSOID1Validate = true;
+            var ssoid = "SSOID : " + ssoid1;
+        }
+        else {
+            ssoid = "";
+        }
+
+        var alertMessage = "Do You Really Want To Modify This Task<br>";
+
+        if (gduration == Newgduration && gES != NewgES.trim() && gLS != NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + sart + "<br>" + late + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + sart + "<br>" + late + "<br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration != Newgduration && gES != NewgES.trim() && gLS == NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + task + "</br>" + sart + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + task + "</br>" + sart + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration != Newgduration && gES == NewgES.trim() && gLS != NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + task + "</br>" + late + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + task + "</br>" + late + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration == Newgduration && gES == NewgES.trim() && gLS != NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + late + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + late + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration != Newgduration && gES == NewgES.trim() && gLS == NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + task + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + task + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration == Newgduration && gES != NewgES.trim() && gLS == NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + sart + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + sart + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration != Newgduration && gES != NewgES.trim() && gLS != NewgLS.trim()) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + task + "</br>" + sart + "<br>" + late + "<br>" + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + task + "</br>" + sart + "<br>" + late + "</br>" + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (gduration == Newgduration && gES == NewgES.trim() && gLS == NewgLS.trim() && SSOID1Validate == true) {
+            jQuery('#modal-3').modal('show');
+            if (gTaskNotes == NewgTaskNotes)
+                $("#modifypop").html(alertMessage + ssoid + "</br>" + fseskills1);
+            else
+                $("#modifypop").html(alertMessage + tNotes + "</br>" + ssoid + "</br>" + fseskills1);
+        }
+        else if (fseskills != Newfseskills && gduration == Newgduration && gES == NewgES.trim() && gLS == NewgLS.trim() && SSOID1Validate != true) {
+
+            if (gTaskNotes == NewgTaskNotes) {
+                jQuery('#modal-3').modal('show');
+                $("#modifypop").html(alertMessage + fseskills1);
+            }
+            else {
+                jQuery('#modal-3').modal('show');
+                $("#modifypop").html(alertMessage + task + "</br>" + fseskills1);
+            }
+        }
+        else if (gTaskNotes != NewgTaskNotes) {
+            jQuery('#modal-3').modal('show');
+            $("#modifypop").html(alertMessage + tNotes + "<br>" + ssoid + "</br>" + fseskills1);
+        }
+        else {
+            //$("#modifypop").html("No Changes made to existing task. Do you want to modify the task?");
+
+            jQuery('#modal-3').modal('hide');
+            jQuery('#modal-modifysitesystem').modal('hide');
+            $("#text").modal('hide');
+
+            $('#modifytask').click();
+        }
+    };
+
+    $('#modifytask').click(function (e) {
+        var Exists = "@Session["taskStatus"]";
+        jQuery('#modal-3').modal('hide');
+        jQuery('#modal-modifysitesystem').modal('hide');
+
+        var grid = $("#tb_Appointments");
+        var rowKey = grid.jqGrid('getGridParam', "selrow");
+
+        //isBumpTask added by Phani Kanth P.
+        var date, appStart, appFinish, requiredFse, isBumpTask, Status, requiredFse, TentativeFse, SSOID, Schedulingpolicy;
+        if (rowKey) {
+
+            var dateGrid = (grid.jqGrid('getCell', rowKey, 'date')).split(',')
+            var Status = (grid.jqGrid('getCell', rowKey, 'TaskStatus'))
+            //alert(Status);
+            var dataToPost = {
+                date: dateGrid[0],
+                appStart: grid.jqGrid('getCell', rowKey, 'AppStart'),
+                appFinish: grid.jqGrid('getCell', rowKey, 'AppFinish'),
+                requiredFse: grid.jqGrid('getCell', rowKey, 'RequiredFSE'),
+                isBumpTask: grid.jqGrid('getCell', rowKey, 'Bump'),
+                requiredFse: grid.jqGrid('getCell', rowKey, 'RequiredFSE'),
+                TentativeFse: grid.jqGrid('getCell', rowKey, 'TentativeFse'),
+                SSOID: grid.jqGrid('getCell', rowKey, 'SSOID'),
+                Schedulingpolicy: grid.jqGrid('getCell', rowKey, 'Schedulingpolicy')
+            };
+        }
+        //celValue = grid.jqGrid('getCell', rowKey, 'requiredFse');
+        //alert("RequiredFSE is: " + celValue);
+
+        //alert("In the event");
+        e.preventDefault(); // <------------------ stop default behaviour of button
+        var element = this;
+
+        if (dataToPost.isBumpTask == 'Yes' && Status == "Tentative") {
+            $.ajax({
+                url: "/RequestAppointmentBooking/GetSlotDetails",
+                type: "POST",
+                data: dataToPost,
+                success: function (data) {
+                    //alert(data.message);
+                    if (data.message == "Success") {
+
+                        if (data.result.length > 0) {
+                            $("#modifyTaskDetails").empty();
+                            jQuery('#modal-modifyBumpTask').modal('show')
+
+                            var html = "";
+                            html += 'By Selecting This Slot you are about to bump the task from the Gantt' + "<br>";
+                            for (var i = 0; i < data.result.length; i++) {
+
+                                html += "<br>" + "Bump Task Details" + " <br>" + "Type:" + data.result[i].Task.TaskType.DisplayString + "<br>" + "Status:" + data.result[i].Task.Status.DisplayString + "<br>" + "SR Number:" + data.result[i].Task.MUSTJobNumber + "<br>" + "Activity ID:" + data.result[i].Task.TaskID + "<br>" + "Assigned Fse:" + data.result[i].Assignment.AssignedEngineers + "<br>" + "Assignement Start:" + DateConversion(data.result[i].Assignment.Start) + "<br>" + "Assignement Finish:" + DateConversion(data.result[i].Assignment.Finish) + "<br>" + "Duration:" + data.result[i].Task.Duration / 3600 + "Hrs" + "<br>" + "Product:" + data.result[i].Task.TaskSystemProductName + "<br>" + "TaskSiteName:" + data.result[i].Task.TaskSiteName + "<br>" + "Level Of Skills:" + data.result[i].Task.SkillLevel + "<br>" + "System Status:" + data.result[i].Task.SystemStatus.DisplayString + "<br>" + "Call ID (Number):" + data.result[i].Task.CallID + "<br>" + " Appointment Start:" + DateConversion(data.result[i].Task.AppointmentStart) + "" + "<br>" + "Appointment Finish:" + DateConversion(data.result[i].Task.AppointmentFinish) + "" + "<br>";
+                            }
+                            jQuery('#modal-3').modal('hide');
+                            jQuery('#modal-modifysitesystem').modal('hide');
+                            $("#modifyTaskDetails").append(html);
+                        }
+
+                        else {
+                            $.ajax({
+                                url: "/RequestAppointmentBooking/ProcessTsk",
+                                type: "POST",
+                                data: dataToPost,
+                                success: function (data) {
+                                    //alert(data.message);
+                                    if (data.message == "Success") {
+
+                                        //alert("1");
+                                        //alert("Task No: " + data.TaskID + " has been created successfully.");
+                                        //<------------ submit form
+                                        jQuery('#modal-ReloadToIndex').modal('show')
+
+                                        if (data.JobType == "Part") {
+                                            if (Exists == "Exists") {
+                                                jQuery('#modal-3').modal('hide');
+                                                jQuery('#modal-modifysitesystem').modal('hide');
+                                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been modified successfully.")
+                                            }
+                                            else {
+                                                jQuery('#modal-3').modal('hide');
+                                                jQuery('#modal-modifysitesystem').modal('hide');
+                                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been created successfully.")
+                                            }
+
+                                        }
+                                        else {
+                                            if (data.taskStatus == "0") {
+                                                jQuery('#modal-3').modal('hide');
+                                                jQuery('#modal-modifysitesystem').modal('hide');
+                                                $("#textINdex").html("Task No: " + data.TaskID + " has been created successfully.")
+                                            }
+                                            else {
+                                                jQuery('#modal-3').modal('hide');
+                                                jQuery('#modal-modifysitesystem').modal('hide');
+                                                $("#textINdex").html("Task No: " + data.TaskID + " has been updated successfully.")
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        //alert("Error occurs while creating the Task!");
+                                        jQuery('#modal-3').modal('hide');
+                                        jQuery('#modal-modifysitesystem').modal('hide');
+                                        jQuery('#modal-2').modal('show')
+                                        $("#text").html("Error occurs while creating the Task!(Exception:" + data.message + ")")
+                                    }
+                                },
+                                error: function () {
+                                    // alert("An error has occured!!!");
+                                    jQuery('#modal-3').modal('hide');
+                                    jQuery('#modal-modifysitesystem').modal('hide');
+                                    jQuery('#modal-2').modal('show')
+                                    $("#text").html("An error has occured!!!")
+                                }
+                            });
+                        }
+
+                    }
+
+                }
+            })
+        }
+        else if (dataToPost.isBumpTask == 'Yes' && Status == "Assigned") {
+            jQuery('#modal-3').modal('hide');
+            jQuery('#modal-modifysitesystem').modal('hide');
+            jQuery('#modal-2').modal('show')
+            $("#text").html("Cannot bump the task with Assigned status !!!")
+        }
+        else {
+            $.ajax({
+                url: "/RequestAppointmentBooking/ProcessTsk",
+                type: "POST",
+                data: dataToPost,
+                success: function (data) {
+                    //alert(data.message);
+                    if (data.message == "Success") {
+                        //alert("1");
+                        //alert("Task No: " + data.TaskID + " has been created successfully.");
+                        //<------------ submit form
+                        jQuery('#modal-ReloadToIndex').modal('show')
+
+                        if (data.JobType == "Part") {
+                            if (Exists == "Exists") {
+                                jQuery('#modal-3').modal('hide');
+                                jQuery('#modal-modifysitesystem').modal('hide');
+                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been modified successfully.")
+                            } else {
+                                jQuery('#modal-3').modal('hide');
+                                jQuery('#modal-modifysitesystem').modal('hide');
+                                $("#textINdex").html(" Task # " + data.TaskID + " and Part Pick Up Job have been created successfully.")
+                            }
+                        }
+                        else {
+                            if (data.taskStatus == "0") {
+                                jQuery('#modal-3').modal('hide');
+                                jQuery('#modal-modifysitesystem').modal('hide');
+                                $("#textINdex").html("Task No: " + data.TaskID + " has been created successfully.")
+                            }
+                            else {
+                                jQuery('#modal-3').modal('hide');
+                                jQuery('#modal-modifysitesystem').modal('hide');
+                                $("#textINdex").html("Task No: " + data.TaskID + " has been updated successfully.")
+                            }
+                        }
+                    }
+                    else {
+                        //alert("Error occurs while creating the Task!");
+                        jQuery('#modal-2').modal('show')
+                        $("#text").html("Error occurs while creating the Task! (Exception:" + data.message + ")")
+                    }
+                },
+                error: function () {
+                    // alert("An error has occured!!!");
+                    jQuery('#modal-3').modal('hide');
+                    jQuery('#modal-modifysitesystem').modal('hide');
+                    jQuery('#modal-2').modal('show')
+                    $("#text").html("An error has occured!!!")
+                }
+            });
+        }
+
+
+
+        //   jQuery('#modal-3').modal('show');
+
+
+    });
+
+    $('#ModifyYesDepTask').click(function () {
+
+
+        jQuery('#modal-modifyPart1').modal('hide')
+        jQuery('#modal-modifysitesystem').modal('hide');
+        ModifyMainAndPartValidations();
+    });
+
+    $("#modifyTaskModel").click(function (e) {
+
+        if (sitecount > 0 || systemcount > 0) {
+
+            var dep = "@Session["SiebelHttpPostParamsActivityNo"]";
+            SiteCountActualflag = true;
+            jQuery('#modal-modifysitesystem').modal('show');
+            var alertMessageDep = "There is a dependency job exist with " + dep + ", please confirm whether you want to modify appointments for this job ? " + '<br>';
+
+            // var alertMessageDep = "Dependency Job exists,Do you want to proceed with modify of both main and dependency(s) job? " + '<br>';
+            jQuery('#modal-1').modal('hide');
+            jQuery('#modal-modifyPart1').modal('hide')
+            $("#modifypopsitesystem").html(alertMessageDep);
+            return;
+        } else {
+            jQuery('#modal-modifyPart1').modal('hide')
+
+            ModifyMainAndPartValidations();
+        }
+    });
+
+    $('#btnCreateTask').click(function (e) {
+
+        var Exists = "@Session["taskStatus"]";
+
+        var grid = $("#tb_Appointments");
+        var rowKey = grid.jqGrid('getGridParam', "selrow");
+        if (rowKey != null) {
+
+            if (Exists == "Exists") {
+                var json = JSON.parse('@Html.Raw(@ViewBag.PartAddresses)');
+
+                var countData = json.length;
+                var partjobExitflag = false;
+                if (countData > 0) {
+                    for (var i = 0; i < json.length; i++) {
+                        if (json[i].Status != "Cancelled") {
+
+                            partjobExitflag = true;
+                            jQuery('#modal-3').modal('hide');
+                            var alertMessageDep = "Part Pick up job exists. Do you want to proceed with modify of both main and part pick-up job? " + '<br>';
+                            jQuery('#modal-modifyPart1').modal('show')
+                            $("#modifyPartPopup").html(alertMessageDep);
+                            return;
+                        }
+                        else {
+                            jQuery('#modal-modifyPart1').modal('hide')
+                        }
+                    }
+
+                }
+                else {
+                    // jQuery('#modal-3').modal('show');
+                    jQuery('#modal-modifyPart1').modal('hide')
+                }
+                if (partjobExitflag != true) {
+                    if (sitecount > 0 || systemcount > 0) {
+
+                        var actvityDep = "@Session["SiebelHttpPostParamsActivityNo"]";
+                        SiteCountActualflag = true;
+                        jQuery('#modal-modifysitesystem').modal('show');
+
+                        var alertMessageDep = "There is a dependency job exist with " + actvityDep + ", please confirm whether you want to modify appointments for this job ? " + '<br>';
+
+
+                        // var alertMessageDep = "Dependency Job exists,Do you want to proceed with modify of both main and dependency(s) job? " + '<br>';
+                        jQuery('#modal-1').modal('hide');
+                        $("#modifypopsitesystem").html(alertMessageDep);
+                        return;
+                    }
+                }
+                var alertMessage = "Do You Really Want To Modify This Task<br>";
+                if (partjobExitflag != true) {
+                    ModifyMainAndPartValidations();
+                }
+
+
+
+            } else {
+                $('#modifytask').click();
+            }
+
+        }
+        else {
+            jQuery('#modal-2').modal('show')
+            $("#text").html("Please select a record!!!")
+        }
+
+    });
+    $('#BtnShowData').click(function (e) {
+        var grid = $("#tb_Appointments");
+        var rowKey = grid.jqGrid('getGridParam', "selrow");
+        if (rowKey != null) {
+            var date, appStart, appFinish, requiredFse, TentativeFse, SSOID, isBumpTask, Schedulingpolicy;
+            if (rowKey) {
+                var dateGrid = (grid.jqGrid('getCell', rowKey, 'date')).split(',')
+                var dataToPost = {
+                    date: dateGrid[0],
+                    appStart: grid.jqGrid('getCell', rowKey, 'AppStart'),
+                    appFinish: grid.jqGrid('getCell', rowKey, 'AppFinish'),
+                    requiredFse: grid.jqGrid('getCell', rowKey, 'RequiredFSE'),
+                    TentativeFse: grid.jqGrid('getCell', rowKey, 'TentativeFse'),
+                    SSOID: grid.jqGrid('getCell', rowKey, 'SSOID'),
+                    isBumpTask: grid.jqGrid('getCell', rowKey, 'Bump'),
+                    Schedulingpolicy: grid.jqGrid('getCell', rowKey, 'Schedulingpolicy')
+                };
+            }
+            //celValue = grid.jqGrid('getCell', rowKey, 'requiredFse');
+            //alert("RequiredFSE is: " + celValue);
+
+            //alert("In the event");
+            e.preventDefault(); // <------------------ stop default behaviour of button
+            var element = this;
+
+            if (dataToPost.isBumpTask == 'Yes') {
+                $.ajax({
+                    url: "/RequestAppointmentBooking/GetSlotDetails",
+                    type: "POST",
+                    data: dataToPost,
+                    success: function (data) {
+
+                        //alert(data.message);
+                        if (data.message == "Success") {
+                            //alert("1");
+                            //alert("Task No: " + data.TaskID + " has been created successfully.");
+                            //<------------ submit form
+                            $("#TaskDetails").empty();
+                            jQuery('#modal-Details').modal('show')
+                            if (data.result.length > 0) {
+
+                                var html = "";
+
+                                html += 'By Selecting This Slot you are about to bump the task from the Gantt' + "<br>";
+                                for (var i = 0; i < data.result.length; i++) {
+
+                                    html += "<br>" + "Bump Task Details" + " <br>" + "Type:" + data.result[i].Task.TaskType.DisplayString + "<br>" + "Status:" + data.result[i].Task.Status.DisplayString + "<br>" + "SR Number:" + data.result[i].Task.MUSTJobNumber + "<br>" + "Activity ID:" + data.result[i].Task.TaskID + "<br>" + "Assigned Fse:" + data.result[i].Assignment.AssignedEngineers + "<br>" + "Assignement Start:" + DateConversion(data.result[i].Assignment.Start) + "<br>" + "Assignement Finish:" + DateConversion(data.result[i].Assignment.Finish) + "<br>" + "Duration:" + data.result[i].Task.Duration / 3600 + "Hrs" + "<br>" + "Product:" + data.result[i].Task.TaskSystemProductName + "<br>" + "TaskSiteName:" + data.result[i].Task.TaskSiteName + "<br>" + "Level Of Skills:" + data.result[i].Task.SkillLevel + "<br>" + "System Status:" + data.result[i].Task.SystemStatus.DisplayString + "<br>" + "Call ID (Number):" + data.result[i].Task.CallID + "<br>" + " Appointment Start:" + DateConversion(data.result[i].Task.AppointmentStart) + "" + "<br>" + "Appointment Finish:" + DateConversion(data.result[i].Task.AppointmentFinish) + "" + "<br>";
+                                }
+                                $("#TaskDetails").append(html);
+                            }
+                            else {
+                                //$("#TaskDetails").html(" No Task Found")
+                            }
+
+                        }
+                        else {
+                            jQuery('#modal-Details').modal('show')
+
+                            $("#TaskDetails").html("An Error Occured While Fetching the Records ")
+                        }
+                    }
+                })
+            } else {
+                //jQuery('#modal-Details').modal('show')
+                //$("#TaskDetails").html("This is not bump Task")
+            }
+        }
+    })
+
+
+    $('#btnReqExtnSlot').click(function (e) {
+        //  alert("ff");
+        e.preventDefault(); // <------------------ stop default behaviour of button
+        var element = this;
+        $.ajax({
+            url: "/RequestAppointmentBooking/RequestExtendedSlotsTask",
+            type: "POST",
+            success: function (data) {
+                //
+                //alert(data);
+                //alert("success");
+                var rowIndex = 0;//row.id;
+                var extendedRecordsCount = 0;
+
+                //alert(data.rows[0].length);
+                //Extended
+
+                for (i = 0; i < data.rows[0].length; i++) {
+                    if (data.rows[0][i].Working == "Extended")
+                        extendedRecordsCount++;
+                }
+
+                if (extendedRecordsCount == 0) {
+                    jQuery('#modal-2').modal('show')
+                    $("#text").html("No Extended Slots found.")
+                }
+                else if (extendedRecordsCount > 0) {
+                    $("#btnCreateTask").removeAttr('disabled');
+
+                }
+                $('#tb_Appointments').jqGrid('clearGridData');
+
+                for (i = 0; i < data.rows[0].length; i++) {
+                    var res = [{
+                        score: data.rows[0][i].score,
+                        date: data.rows[0][i].date,
+                        AppStart: data.rows[0][i].AppStart,
+                        AppFinish: data.rows[0][i].AppFinish,
+                        TentativeFse: data.rows[0][i].TentativeFse,
+                        //  travelTime: data.rows[0][i].travelTime,
+                        RequiredFse: data.rows[0][i].RequiredFse,
+                        SLA: data.rows[0][i].SLA,
+                        Working: data.rows[0][i].Working,
+                        Bump: data.rows[0][i].Bump,
+                        SSOID: data.rows[0][i].SSOID,
+                        TaskStatus: data.rows[0][i].TaskStatus,
+                        Schedulingpolicy: data.rows[0][i].SchedulingpolicyExtended
+                    }]
+                    var row = res[0];
+                    //var rowIndex = 0;//row.id;
+                    $("#tb_Appointments").jqGrid("addRowData", rowIndex, row);//, i);
+                     rowIndex = rowIndex + 1;
+                }
+                $("#tb_Appointments").jqGrid().sortGrid('date', true);
+                
+                jQuery("#tb_Appointments").trigger("reloadGrid");
+               
+            },
+            error: function () {
+                // alert("An error has occured!!!");
+                jQuery('#modal-2').modal('show')
+                $("#text").html("An error has occured!!!")
+            }
+        });
+    });
+    $("#ReloadToIndex").click(function (e) {
+
+        //$("#btnCreateTask").attr("disabled", "disabled");
+        //$("#btnCreateTask").removeClass("btn btn-info");
+        //$("#btnCreateTask").addClass("btn btn-dark");
+        //$("#btnCreateTask").attr("disabled", "disabled");
+        //$("#btnCreateTask").removeClass("btn btn-info");
+        //$("#btnCreateTask").addClass("btn btn-dark");
+
+
+    })
+    function DateConversion(Date) {
+
+        var jsDate = moment(Date).format('DD/MM/YYYY HH:mm');
+        //alert(jsDate);
+        //var MyDate_String_Value = "/Date(1224043200000)/"
+        //var value = new Date
+        //            (
+        //                 parseInt(MyDate_String_Value.replace(/(^.*\()|([+-].*$)/g, ''))
+        //            );
+        //var dat = value.getMonth() +
+        //                         1 +
+        //                       "/" +
+        //           value.getDate() +
+        //                       "/" +
+        //       value.getFullYear();
+        //alert(dat);
+        //var date1 = Date.split("(");
+        //var finaldate=date1[1].replace(")/", "")
+        //alert(finaldate);
+        //var d = new Date(finaldate);
+        // d.setTime(finaldate);
+
+
+        return jsDate;
+    }
+</script>

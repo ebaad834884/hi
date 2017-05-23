@@ -1,0 +1,4502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:i0="http://www.clicksoftware.com" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="W6ScheduleService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+        <wsap:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService2_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService3_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsap:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService4_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="CustomBinding_ScheduleService5_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <http:BasicAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:import namespace="http://www.clicksoftware.com" location="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc?wsdl=wsdl0" />
+  <wsdl:types />
+  <wsdl:binding name="CustomBinding_ScheduleService" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ScheduleService1" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService1_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ScheduleService2" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService2_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ScheduleService3" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService3_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ScheduleService4" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService4_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_ScheduleService5" type="i0:ScheduleService">
+    <wsp:PolicyReference URI="#CustomBinding_ScheduleService5_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="W6InProcSxpIntBinding_ScheduleService" type="i0:ScheduleService">
+    <soap:binding transport="http://schemas.clicksoftware.com/soap/inproc" />
+    <wsdl:operation name="IncludeLunchInAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/IncludeLunchInAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExcludeLunchFromAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExcludeLunchFromAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RescheduleLunchStart">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RescheduleLunchStart" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportActualLunch">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ReportActualLunch" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointmentsProfileIntervals">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointmentsProfileIntervals" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBVFUnit">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetBVFUnit" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskOperations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskOperations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateRelocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCrewAllocation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateCrewAllocation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DragAndDropAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DragAndDropAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskCheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskCheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGanttObjects">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetGanttObjects" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskList">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskList" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommitTasksSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CommitTasksSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTravelTimes">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTravelTimes" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersDynamicProperties">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersDynamicProperties" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNextStatusTransition">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetNextStatusTransition" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEngineersCrewAllocations">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetEngineersCrewAllocations" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRulesEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRulesEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetOutboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDraftMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetDraftMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInboxMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetInboxMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessages">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteMessages" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSchedulePolicy">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetSchedulePolicy" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunSchedulingWorkflow">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunSchedulingWorkflow" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunScheduleUpdate">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/RunScheduleUpdate" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLunchInformation">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetLunchInformation" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAssignments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceSchedule">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetResourceSchedule" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskSchedulingOptions">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskSchedulingOptions" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckRules">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CheckRules" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendedGetAppointmentsEx2">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ExtendedGetAppointmentsEx2" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAppointments">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetAppointments" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessTaskEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ProcessTaskEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignment">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignment" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTaskAssignmentEx">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTaskAssignmentEx" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ScheduleIdleResource">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/ScheduleIdleResource" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskCandidates">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTaskCandidates" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/DeleteTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UpdateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/GetTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTask">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTask" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnscheduleTasks">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/UnscheduleTasks" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerUpgrade">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerUpgrade" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MegaTaskUpdateOrAdd">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/MegaTaskUpdateOrAdd" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BundlerTaskGet">
+      <soap:operation soapAction="http://www.clicksoftware.com/ScheduleService/BundlerTaskGet" style="document" />
+      <wsdl:input>
+        <soap:header message="i0:OptionalParameters" part="Header" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="W6ScheduleService">
+    <wsdl:port name="CustomBinding_ScheduleService" binding="tns:CustomBinding_ScheduleService">
+      <soap:address location="http://so-gehc-stg-06.csodprod.internal/SO/IntegrationServices/ScheduleService.svc/SxpInt" />
+      <wsa:EndpointReference>
+        <wsa:Address>http://so-gehc-stg-06.csodprod.internal/SO/IntegrationServices/ScheduleService.svc/SxpInt</wsa:Address>
+      </wsa:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ScheduleService1" binding="tns:CustomBinding_ScheduleService1">
+      <soap:address location="http://so-gehc-stg-06.csodprod.internal/SO/IntegrationServices/ScheduleService.svc/BasicHttpInt" />
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ScheduleService2" binding="tns:CustomBinding_ScheduleService2">
+      <soap:address location="http://so-gehc-stg-06.csodprod.internal/SO/IntegrationServices/ScheduleService.svc/BasicHttpIntOneWay" />
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ScheduleService3" binding="tns:CustomBinding_ScheduleService3">
+      <soap:address location="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc/SxpInt" />
+      <wsa:EndpointReference>
+        <wsa:Address>https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc/SxpInt</wsa:Address>
+      </wsa:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ScheduleService4" binding="tns:CustomBinding_ScheduleService4">
+      <soap:address location="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc/BasicHttpInt" />
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_ScheduleService5" binding="tns:CustomBinding_ScheduleService5">
+      <soap:address location="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ScheduleService.svc/BasicHttpIntOneWay" />
+    </wsdl:port>
+    <wsdl:port name="W6InProcSxpIntBinding_ScheduleService" binding="tns:W6InProcSxpIntBinding_ScheduleService">
+      <soap:address location="w6.inproc://so-gehc-stg-06.csodprod.internal:80/SO/IntegrationServices/ScheduleService.svc/InProcSxpInt" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

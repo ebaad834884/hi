@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<dropdown>
+  <Countries>
+    <Country>AUSTRALIA</Country>
+    <Country>CAMBODIA</Country>
+    <Country>INDONESIA</Country>
+    <Country>KOREA, REPUBLIC OF</Country>
+    <Country>MALAYSIA</Country>
+    <TimeZone>
+      <Name>UCT+ 5:30</Name>
+    </TimeZone>
+    <TimeZone>
+      <Name>UCT+6:60</Name>
+    </TimeZone>
+    <Country>NEW ZEALAND</Country>
+    <Country>PHILIPPINES</Country>
+    <Country>SINGAPORE</Country>
+    <Country>THAILAND</Country>
+    <Country>VIET NAM</Country>
+  </Countries>
+</dropdown>

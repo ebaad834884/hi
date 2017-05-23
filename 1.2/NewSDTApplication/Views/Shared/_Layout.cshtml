@@ -1,0 +1,88 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - SDT Booking</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqgrid")
+    <link rel="icon" href="/Images/500px-General_Electric_logo_svg.png" />
+    <nav class="navbar nav_menu ">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")" onclick="clickAndDisable(this)">
+                <span><img src="~/Images/500px-General_Electric_logo_svg.png" height="50" alt="logo" /></span>
+                <span><b><u>SDT Booking</u></b></span>
+            </a>
+            <div class="bgblck" style="display: block;"></div>
+            <div id="Loadingeye" style="display: block" class="loimg">
+                <img src="/Images/loopingclock.gif" style="right: 0px; height: auto; position: absolute; width: 4%;" alt="" />
+            </div>
+        </div>
+    </nav>
+</head>
+@*<body>
+        <div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                    <p>&copy;  Copyright © GEHC</p>
+                    <div style="float: right; width: 25%; margin-top: -22px;">
+                    </div>
+                </footer>
+        </div>
+    </body>*@
+
+<body>
+    <div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer style=" background-color: #34495e !important; height: 52px;font-weight:bold;">
+        <p><font color="white">&copy;  Copyright © GEHC | <span>Version @System.Configuration.ConfigurationManager.AppSettings["ApplicationVersion"]</span></font>
+           <span id="srepTime" style="vertical-align: bottom; float: right; display: block; visibility: visible; color :white; font-size:x-small"></span></p>
+        <p><span id="crepTime" style="vertical-align: bottom; float: right; display: block; visibility: visible; color: white; font-size: x-small"></span></p>
+        
+    </footer>
+
+    </bodystyle=>
+
+
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/datetime")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </body>
+</html>
+<script type="text/javascript">
+    $(document).ajaxStart(function () {
+        $('.bgblck').show();
+        $('#Loadingeye').show();
+    });
+    $(document).ajaxStop(function () {
+        $('#Loadingeye').hide();
+        $('.bgblck').hide();
+    });
+
+    
+    history.pushState(null, null, '');
+    window.addEventListener('popstate', function (event) {
+        history.pushState(null, null, '');
+    });
+
+  
+    function clickAndDisable(link) {
+        link.onclick = function (event) {
+            event.preventDefault();
+        }
+    }
+  
+</script>

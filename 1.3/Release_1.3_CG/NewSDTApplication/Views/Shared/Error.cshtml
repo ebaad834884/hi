@@ -1,0 +1,62 @@
+﻿@{
+
+    ViewBag.Title = (!String.IsNullOrEmpty(ViewBag.StatusCode)) ? ViewBag.StatusCode : "";
+    Layout = "~/Views/Shared/_LayoutError.cshtml";
+
+}
+<link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+<link href="/Content/fonts/css/font-awesome.min.css" rel="stylesheet">
+<link href="/Content/css/animate.min.css" rel="stylesheet">
+<!-- Custom styling plus plugins -->
+<link href="/Content/css/custom.css" rel="stylesheet">
+<link href="/Content/css/icheck/flat/green.css" rel="stylesheet">
+
+<script src="/Content/js/jquery.min.js"></script>
+@*<h1 class="error">@(!String.IsNullOrEmpty(ViewBag.StatusCode) ? ViewBag.StatusCode : "500 Error"):</h1>*@
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+            <div class="col-md-12">
+                <div class="col-middle">
+                    <div class="text-center text-center">
+                        <h1 class="error-number">@(!String.IsNullOrEmpty(ViewBag.StatusCode) ? ViewBag.StatusCode : "")</h1>
+                        @*<h2>Sorry but we couldnt find this page</h2>*@
+                        <p style="font-size:30px;font-style:oblique;">
+                            @ViewBag.Exception
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+        <!-- footer content -->
+    </div>
+    <div id="custom_notifications" class="custom-notifications dsp_none">
+        <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+        <div class="clearfix"></div>
+        <div id="notif-group" class="tabbed_notifications"></div>
+    </div>
+
+    <!-- /footer content -->
+</body>
+@*<div>
+        <p>
+            <b>@ViewBag.Exception</b>
+        </p>
+    </div>*@
+
+@*@{
+
+    ViewBag.Title = (!String.IsNullOrEmpty(ViewBag.StatusCode)) ? ViewBag.StatusCode : "500 Error";
+
+}
+
+<h1 class="error">@(!String.IsNullOrEmpty(ViewBag.StatusCode) ? ViewBag.StatusCode : "500 Error"):</h1>
+
+<div>
+    <p>
+        <b>@ViewBag.Exception</b>
+    </p>
+</div>*@

@@ -1,0 +1,41 @@
+﻿@model NewSDTApplication.ViewModels.SiebelTaskResponseViewModel
+
+<div class="panel-default">
+    <div class="panel-heading">Preventive Maintenance Details</div>
+    <div class="panel panel-body">
+
+        <div class="row">
+            <div class="col-md-offset-0">
+                <label class="col-md-4 control-label text-right">LOS</label>
+            </div>
+
+            <div class="col-md-2">
+                <input id="pmno" name="pmno" type="text" value="@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gehcPMLevelofService + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gehcSequenceNumber)"  disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-0">
+                <label class="col-md-4 control-label text-right">Scheduled Date</label>
+            </div>
+            <div class="col-md-2">
+                @*<input id="scheduleddate" name="scheduleddate" type="text" value="@string.Format("dd/MM/yyyy", (Convert.ToDateTime(Model.SiebelResponseAttributes.serviceRequest.gEHCSchedDate))))" disabled />*@
+                <input id="scheduleddate" name="scheduleddate" type="text" value="@Model.SiebelResponseAttributes.serviceRequest.gEHCSchedDate" disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-0">
+                <label class="col-md-4 control-label text-right">Desired Date</label>
+            </div>
+            <div class="col-md-2">
+                <input id="scheduleddate" name="desireddate" type="text" value="@Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gEHCDesiredDateTime" disabled />
+            </div>
+        </div>
+
+
+        @*<div class="col-md-2">
+                <input id="gEHCDesiredDateTime" name="gEHCDesiredDateTime" type="text"value="@Model.serviceRequest.activityDetailList[0].gEHCDesiredDateTime"  disabled />
+            </div>*@
+
+
+    </div>
+</div>

@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "RequestAppointmentBooking";
+}
+
+<h2>RequestAppointmentBooking</h2>
+
+<div>
+    <table id="tb_Appointments"></table>
+    <div id="tb_Appointments_pager"></div>
+</div>
+<script type="text/javascript">
+
+    history.pushState(null, null, 'pagename');
+    window.addEventListener('popstate', function (event) {
+        history.pushState(null, null, 'pagename');
+    });
+
+    $(document).ready(function myfunction() {
+
+        $('#tb_Appointments').jqGrid({
+            url: '/RequestAppointmentBooking/GetAppointments/',
+            datatype: "json",
+            contentType: "application/json; charset-utf-8",
+            mtype: 'GET',
+            height: 300,
+            autowidth: true,
+            colNames: ['Score', 'Date', 'App Start', 'App Finish', 'Tentative FSE', 'Travel Time', 'Required FSE', 'Working'],
+            colModel: [
+                  { name: 'Score', index: 'Score', width: 150, "formatter": formatScore, "unformat": unformatScore },
+                  { name: 'Date', index: 'Date', width: 150 },
+                  { name: 'AppStart', index: 'AppStart', width: 150 },
+                  { name: 'AppFinish', index: 'AppFinish', width: 150 },
+                  { name: 'TentativeFSE', index: 'TentativeFSE', width: 150 },
+                  { name: 'TravelTime', index: 'TravelTime', width: 150 },
+                  { name: 'RequiredFSE', index: 'RequiredFSE', width: 150, formatter: "checkbox", formatoptions: { disabled: true } },
+                  { name: 'Working', index: 'Working', width: 150, "formatter": formatWorking, "unformat": unformatWorking }
+
+            ],
+
+            rowNum: 10,
+            rowTotal: 2000,
+            rowList: [10, 20, 30, 50],
+            loadonce: true,
+            mtype: "GET",
+            rownumbers: true,
+            rownumWidth: 40,
+            gridview: true,
+            pager: '#tb_Appointments_pager',
+            sortname: 'id',
+            viewrecords: true,
+            sortorder: "asc",
+            caption: "Appoinments", onSelectRow: function (id, status) {
+
+                var rowData = $(this).getRowData(id);
+
+                // Add this
+                var ch = $(this).find('#' + id + ' input[type=checkbox]').prop('disabled');
+                if (ch) {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('disabled', false);
+                } else {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('checked', true);
+                }
+                // end Add
+                rowChecked = 1;
+                currentrow = id;
+            }
+
+
+        });
+
+        function format(cellValue, options, rowObject) {
+            var imageHtml = "<input type=\"checkbox\" name=\"vehicle\"  >"
+            return imageHtml;
+        }
+        function unformat(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+        function formatScore(cellValue, options, rowObject) {
+            var color = (parseInt(cellValue) > 900) ? "green" : "red";
+            var cellHtml = "<span style='background-color:" + color + ";width:100%' originalValue='" +
+                               cellValue + "'>" + cellValue + "</span>";
+
+            return cellHtml;
+
+
+
+        }
+        function unformatScore(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+        function formatWorking(cellValue, options, rowObject) {
+            var color = (cellValue = 'Normal') ? "green" : "red";
+            var cellHtml = "<span style='color:" + color + "' originalValue='" +
+                     cellValue + "'>" + cellValue + "</span>";
+
+
+            return cellHtml;
+        }
+        function unformatWorking(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+
+    });
+</script> 

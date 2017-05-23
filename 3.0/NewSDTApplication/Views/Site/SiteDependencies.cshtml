@@ -1,0 +1,515 @@
+﻿@{
+    ViewBag.Title = "Potential Site dependencies";
+}
+
+@*<link href="~/Content/css/datatables/css/demo_table.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/demo_table_jui.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/css/datatables/css/jquery.dataTables_themeroller.css" rel="stylesheet" />
+    <link href="~/Content/jqgrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/custom.css" rel="stylesheet" />*@
+
+<!-- The jQuery library is a prerequisite for all jqSuite products -->
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/custom.css" rel="stylesheet" />
+
+
+<script src="~/Content/js/jquery.min.js"></script>
+<!-- This is the Javascript file of jqGrid -->
+<script src="~/Scripts/JQGrid/jquery.jqGrid.min.js"></script>
+<!-- This is the localization file of the grid controlling messages, labels, etc. -->
+<!-- We support more than 40 localizations -->
+<script src="~/Scripts/JQGrid/grid.locale-en.js"></script>
+<!-- A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom -->
+<link href="~/Content/jqgrid/jquery-ui.css" rel="stylesheet" />
+<!-- The link to the CSS that the grid needs -->
+<link href="~/Content/jqgrid/ui.jqgrid.css" rel="stylesheet" />
+<style>
+    .ui-pg-input .ui-corner-all {
+        color: black;
+    }
+
+    .button, input, optgroup, select, textarea {
+        color: black;
+        font: inherit;
+        margin: 0;
+    }
+</style>
+
+
+
+<script src="~/Scripts/JQGrid/jquery.jqGrid.js"></script>
+@*<link href="~/Content/jqgrid/ui.jqgrid-bootstrap-ui.css" rel="stylesheet" />
+    <link href="~/Content/jqgrid/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+*@
+
+<style>
+    body {
+        background: #fff !important;
+    }
+</style>
+
+<div class="x_content">
+    <h2 style="padding-top:70px;"><b><u>@ViewBag.SitePotentialDependency</u></b></h2>
+    
+    <div class="clearfix"></div>
+</div>
+<input type="hidden" value="@ViewBag.SiteActualCount" id="hSiteActualCount">
+
+<div class="x_content">
+
+    <table id="tb_Sites" class="table table-striped responsive-utilities jambo_table"></table>
+    <div id="tb_Sites_pager"></div>
+
+    <br />
+    <div class="col-md-12 col-sm-12 col-xs-12 form-group ctnc">
+        <button type="button" class="btn btn-info" id="btnCreateVisitWithDependency">
+            <i class="fa fa-ban"></i> Create Visit With Dependencies
+        </button>
+
+        <a class="btn btn-info" id="ancBackHome" href="@Url.Action("Index", "Home")">
+            Back to Home
+        </a>
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+        @*<button type="button" class="btn btn-primary">
+                <i class="fa fa-ban"></i> Close
+            </button>*@
+
+    </div>
+
+    @*<button type="button" class="btn btn-primary">
+            <i class="fa fa-ban"></i> Close
+        </button>*@
+
+</div>
+<div class="modal fade" id="modal-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+
+            <div class="modal-body" id="text">
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnSiteDependencyRefresh" class="btn btn-default" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up container*@ 
+<div class="modal fade" id="modal-moredetails">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+
+            <div class="modal-body" id="text">
+
+            </div>
+
+            <div class="modal-footer">
+                <div id="sdmoredetailsDiv">
+                    <button type="button" id="sdmoredetails" class="details-button">More Details >></button>
+                </div>
+                <div id="sdlessdetailsDiv" style="display:none;">
+                    <button type="button" id="sdlessdetails" class="details-button">Less Details <<</button>
+                </div>
+                <div id="sitedep-moredetails" class="details-text">
+                </div>
+                <button type="button" class="btn btn-default" id="btnModalOK" data-dismiss="modal">OK</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    //history.pushState(null, null, 'pagename');
+    //window.addEventListener('popstate', function (event) {
+    //    history.pushState(null, null, 'pagename');
+    //});
+    var appWindow = "";
+    $(document).ready(function myfunction() {
+
+        var wdth = "1350";
+        $('#tb_Sites').jqGrid({
+            url: '/Site/GetSiteDependencies/',
+            datatype: "json",
+            contentType: "application/json; charset-utf-8",
+            mtype: 'GET',
+            height: 350,
+            autowidth: true,
+            headertitles: true,
+            sortable: true,
+            //colNames: ['Selection', 'Rating', 'Sitename', 'Systemname', 'ProductID', 'RFS#', 'Tasktype', 'Level', 'Status', 'EarlyStart', 'Duration', 'Start', 'AssignedFSE', 'Dependency'],
+            //  colNames: ['Rating', 'RatingColor', 'CallID', 'Sitename', 'Systemname', 'SystemID', 'ProductID', 'RFS#', 'Tasktype', 'Level', 'Status', 'EarlyStart','AppointmentStart','AppointmentFinish','AssignmentStart','AssignmentFinish', 'Duration (min)', 'Start', 'AssignedFSE', 'Dependency', 'TaskNumber', 'TaskID', 'SR Number'],
+            colNames: ['Rating', 'RatingColor','TaskID', 'SR Number', 'Sitename', 'Systemname', 'SystemID', 'ProductID', 'Tasktype', 'Level', 'Status', 'EarlyStart', 'AppointmentStart', 'AppointmentFinish', 'AssignmentStart', 'AssignmentFinish', 'Duration (min)', 'AssignedFSE',  'TaskNumber', 'CallID', ],
+            colModel: [
+                 //{ name: 'Selection', index: 'selection', "width": 60, formatter: "checkbox", formatoptions: { disabled: true } },
+                  { name: 'Rating', index: 'Rating', "formatter": formatRating, "width": 110, "height": 70, "unformat": unformatRating },
+                  { name: 'RatingColor', index: 'RatingColor', "hidden": true },
+                   { name: 'TaskID', index: 'TaskID', "width": 300, "height": 70 },
+                  { name: 'SRnumber', index: 'SRnumber', "width": 300, "height": 55 },
+                  { name: 'Sitename', index: 'Sitename', "width": 450, "height": 70 },
+                  { name: 'Systemname', index: 'Systemname', "width": 220, "height": 70 },
+                   { name: 'SystemID', index: 'SystemID', "width": 220, "height": 70 },
+                  { name: 'ProductID', index: 'ProductID', "width": 300, "height": 70 },
+                  //{ name: 'RFS', index: 'RFS', "width": 100, "height": 70 },
+                  { name: 'Tasktype', index: 'Tasktype', "width": 100, "height": 70 },
+                  { name: 'Level', index: 'Level', "width": 80, "height": 70 },
+                  { name: 'Status', index: 'Status', "height": 140, "width": 95 },
+                  {
+                      name: 'EarlyStart', index: 'EarlyStart', width: 250, "height": 70, sorttype: 'datetime',
+                      formatter: "date", formatoptions: { srcformat: "m/d/y h:i:s A", newformat: "D,M d h:i" }
+                  },
+                   {
+                       name: 'AppointmentStart', index: 'AppointmentStart', width: 250, "height": 70, sorttype: 'datetime',
+                       formatter: "date", formatoptions: { srcformat: "m/d/y h:i:s A", newformat: "D,M d h:i" }
+                   },
+                    {
+                        name: 'AppointmentFinish', index: 'AppointmentFinish', width: 250, "height": 70, sorttype: 'datetime',
+                        formatter: "date", formatoptions: { srcformat: "m/d/y h:i:s A", newformat: "D,M d h:i" }
+                    },
+                      {
+                          name: 'AssignmentStart', index: 'AssignmentStart', width: 250, "height": 70, sorttype: 'datetime',
+                          formatter: "date", formatoptions: { srcformat: "m/d/y h:i:s A", newformat: "D,M d h:i" }
+                      },
+                        {
+                            name: 'AssignmentFinish', index: 'AssignmentFinish', width: 250, "height": 70, sorttype: 'datetime',
+                            formatter: "date", formatoptions: { srcformat: "m/d/y h:i:s A", newformat: "D,M d h:i" }
+                        },
+                  //{ name: 'Duration', index: 'Duration', "width": 190, "formatter": dropDownFormatter, "unformat": undropDownFormatter, "height": 70 },
+                  { name: 'Duration', index: 'Duration', "width": 310, "formatter": dropDownFormatter, "height": 70, sorttype: 'int' },
+                  //{ name: 'Start', index: 'Start', "height": 70 },
+                  { name: 'AssignedFSE', index: 'AssignedFSE', "height": 90 },
+                  //{ name: 'Dependency', index: 'Dependency', "height": 70 },
+                  { name: 'TaskNumber', index: 'TaskNumber', "height": 90, "hidden": true },
+                  { name: 'CallID', index: 'CallID', "width": 400, "height": 70 },
+
+
+            ],
+
+            rowNum: 10,
+            rowTotal: 2000,
+            rowList: [10, 20, 30, 50],
+            loadonce: true,
+            mtype: "GET",
+            rownumbers: true,
+            rownumWidth: 40,
+            gridview: true,
+            pager: '#tb_Sites_pager',
+            sortname: 'id',
+            viewrecords: true,
+            sortorder: "asc",
+            gridComplete: function () {
+
+                var recs = $("#tb_Sites").getGridParam("records");
+                if (recs == 0 || recs == null) {
+                    $("#btnCreateVisitWithDependency").attr("disabled", "disabled");
+                }
+                else {
+                    $("#btnCreateVisitWithDependency").removeAttr('disabled');
+                }
+            },
+            //caption: "Sites",
+            onSelectRow: function (id, status) {
+
+                var rowData = $(this).getRowData(id);
+
+                // Add this
+                var ch = $(this).find('#' + id + ' input[type=checkbox]').prop('disabled');
+                if (ch) {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('disabled', false);
+                } else {
+                    jQuery(this).find('#' + id + ' input[type=checkbox]').prop('checked', true);
+                }
+                // end Add
+                rowChecked = 1;
+                currentrow = id;
+            },
+            beforeSelectRow: function (rowId, e) {
+                var pageSize = $(this).getGridParam('rowNum');
+                for (var i = 0; i <= pageSize; i++) {
+                    if (i != rowId) {
+                        var rowData = $(this).getRowData(i);
+                        jQuery(this).find('#' + i + ' input[type=checkbox]').prop('disabled', true);
+                        jQuery(this).find('#' + i + ' input[type=checkbox]').prop('checked', false);
+                    }
+
+                }
+
+
+            }
+
+
+        });
+
+        function formatRating(cellValue, options, rowObject) {
+
+            var color = rowObject.RatingColor;
+            var cellHtml = "<span style='color:" + color + ";width:90%' originalValue='" +
+                               cellValue + "'>" + cellValue + "</span>";
+            return cellHtml;
+        }
+
+        function unformatRating(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+
+
+        function dropDownFormatter(cellvalue, options, rowObject, action) {
+            // var statusTypeId = rowObject[0];
+            //debugger;
+            var hrsandmins = rowObject.Duration;//[1];
+            // alert(hrsandmins);
+            var minutes = Math.floor(hrsandmins / 60);
+
+            minutes = parseInt(minutes.toString().replace('.', ''));
+            //var hours = Math.floor(minutes / 60);
+            //minutes %= 60;
+            //hours %= 60;
+
+            //var hrheader = '<select id="selhrs" style="height:24px;width:33px;text-align:center">';
+            //var hrrow = '';
+            //for (var i = 1; i <= 12; i++) {
+
+            //    if (hours == i) {
+            //        hrrow = hrrow + '<option value="' + i + '" selected>' + i + '</option>';
+            //    }
+            //    else {
+
+            //        hrrow = hrrow + '<option value="' + i + '">' + i + '</option>';
+            //    }
+
+
+            //}
+
+            //hrheader = hrheader + hrrow + "</select>";
+
+            //var minsheader = '<select id="selmins" style="height:24px;width:33px;text-align:center">';
+            //var minsrow = '';
+            //for (var i = 0; i <= 60; i++) {
+
+            //    if (minutes == i) {
+            //        minsrow = minsrow + '<option value="' + i + '" selected>' + i + '</option>';
+            //    }
+            //    else {
+
+            //        minsrow = minsrow + '<option value="' + i + '">' + i + '</option>';
+            //    }
+
+            //}
+
+            //minsheader = minsheader + minsrow + "</select>";
+            //return hrheader + minsheader;
+            return minutes;
+
+
+        }
+
+
+        function undropDownFormatter(cellValue, options, cellObject) {
+            return $(cellObject.html()).attr("originalValue");
+        }
+
+        appWindow = '@Session["SiteDependencies"]';
+
+        if (appWindow == "PotentialDependency") {
+            $("#btnCreateVisitWithDependency").show();
+            $("#ancBackHome").hide();
+
+        }
+        else if (appWindow == "ActualDependency") {
+            $("#btnCreateVisitWithDependency").hide();
+            $("#ancBackHome").show();
+        }
+    });
+
+    $("#btnSiteDependencyRefresh").click(function () {
+
+
+        location.reload();
+
+    });
+    var GetSiteSystemData, arrSite, arrSystem = "";
+    //function GetSiteSytemClickTaskCount() {
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/Home/GetSiteSytemClickTaskCount",
+    //    }).done(function (data) {
+    //        GetSiteSystemData = data;
+
+    //    });
+    //}
+    var SiteCountActual, taskid = "";
+    $('#btnCreateVisitWithDependency').click(function (e) {
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/GetSiteSytemClickTaskCount",
+        }).done(function (data) {
+            GetSiteSystemData = data;
+            SiteCountActual = data.SiteCountActual;//'@Session["SiteCountActual"]';
+            taskid = '@Session["taskID"]'; //alert(taskid);
+            //alert(SiteCountActual);
+            if (SiteCountActual == null || SiteCountActual == undefined || SiteCountActual == "" || SiteCountActual == 0) {
+                // alert('In createvisit')
+                var grid = $("#tb_Sites");
+                e.preventDefault(); // <------------------ stop default behaviour of button
+                //var rowKey = grid.getGridParam("selarrrow");
+                var rowKey = grid.jqGrid('getGridParam', "selrow");
+                var result = [];
+                var FinalRes = [[]];
+                //alert(grid.jqGrid('getCell', rowKey[0], 'TaskNumber'));
+                //if (grid.jqGrid('getCell', rowKey[0], 'TaskNumber') != "1") {
+                //    jQuery('#modal-2').modal('show')
+                //    $("#text").html("Please select a Task which has no Dependency created yet. ");
+                //}
+                //else {
+                // var rowKey = grid.jqGrid('getGridParam', "selrow");
+                //var mylist = new generic.list();
+                //debugger;
+                //Jayesh Soni - US82 - 13/04/2017 Start
+                //var srDescription = sessionStorage.getItem("SRDesc");
+                //Jayesh Soni - US82 - 13/04/2017 Start
+
+                if (rowKey) {
+                    for (var i = 0; i < rowKey.length; i++) {
+                        //alert(rowKey.length);
+                        //var TaskType = grid.jqGrid('getCell', rowKey[i], 'Tasktype');
+                        //var TaskSiteName = grid.jqGrid('getCell', rowKey[i], 'Sitename');
+                        //result.push(TaskType, TaskSiteName);
+                        //alert(result);
+                        //FinalRes.push([result])
+                        
+                        //Jayesh Soni - US82 - 13/04/2017 - SR Desc added to Final Res
+                        FinalRes += JSON.stringify({ CallID: grid.jqGrid('getCell', rowKey[i], 'CallID'), TaskNumber: grid.jqGrid('getCell', rowKey[i], 'TaskNumber'), Duration: grid.jqGrid('getCell', rowKey[i], 'Duration'), MUSTJobNumber: grid.jqGrid('getCell', rowKey[i], 'SRnumber')}) + ",";
+                    }
+
+                    //Code Start - Tejashree - 13/04/2017 - Scope: US186 SystemID is NULL
+                    debugger;
+                    var systemIdChk = sessionStorage.getItem("systemIdAvailabilityChk");
+                    //Code End - Tejashree - 13/04/2017 - Scope: US186 SystemID is NULL
+
+                    // alert(FinalRes);
+                    FinalRes = JSON.stringify({ 'FinalRes': FinalRes });
+                    var dataToPost = FinalRes;
+
+                    var element = this;
+                    $.ajax({
+
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "/Site/CreateVisitWithDependencies",
+                        data: dataToPost,
+
+                        success: function (data) {
+                            //alert(data.message);
+                            if (data.message == "Success") {
+
+
+                                //alert("1");
+                                //alert("Task No: " + data.TaskID + " has been created successfully.");
+                                jQuery('#modal-2').modal('show')
+                                $("#text").html("Dependency Task has been successfully created for the CallID: " + data.CallID);
+
+
+                                //alert("Dependency Task has been succesfully created for the CallID: " + data.CallID);
+                                //<------------ submit form
+                                //jQuery('#modal-2').modal('show')
+                                // $("#text").html("Dependency Task has been succesfully created for the CallID: " + data.CallID)
+
+                            }
+                            else if (data.message == "TaskSubTypeEmpty") {
+                                //alert("Error occurs while creating the Task!");
+                                jQuery('#modal-2').modal('show')
+                                $("#text").html("SrSubtype is empty at Siebel")
+                            }//Code Start - Tejashree - 13/04/2017 - Scope: US186 SystemID is NULL
+                            else if ((systemIdChk != null) || (systemIdChk != "")) {
+                                jQuery('#modal-2').modal('show')
+                                $("#text").html("Task cannot be created because SystemID is NULL")
+                            }//Code End - Tejashree - 13/04/2017 - Scope: US186 SystemID is NULL
+                            else {
+                                //alert("Error occurs while creating the Task!");
+
+                                //jQuery('#modal-2').modal('show')
+                                //$("#text").html("Error occurs while creating the Dependency Task!(Exception:" + data.message + ")")
+                                //Start Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up when error occurs while creating task
+                                $("#text").html("An error occurred while creating the Task!");
+                                $("#sitedep-moredetails").append("Exception: " + data.message);
+                                $("#sitedep-moredetails").hide();
+                                jQuery('#modal-moredetails').modal('show');
+
+                                $("#sdmoredetails").click(function () {
+                                    $("#sitedep-moredetails").toggle();
+                                    $("#sdlessdetailsDiv").show();
+                                    $("#sdmoredetailsDiv").hide();
+                                });
+
+                                $("#sdlessdetails").click(function () {
+                                    $("#sitedep-moredetails").toggle();
+                                    $("#sdmoredetailsDiv").show();
+                                    $("#sdlessdetailsDiv").hide();
+                                });
+								//End Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up when error occurs while creating task
+                            }
+                        },
+                        error: function () {
+                            // alert("An error has occured!!!");
+
+                            //jQuery('#modal-2').modal('show')
+                            //$("#text").html("An error has occured!!!")
+                            //Start Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up when error occurs while creating task
+                            $("#text").html("An error occurred while creating the Task!")
+                            $("#sitedep-moredetails").append("Exception: " + data.message)
+                            $("#sitedep-moredetails").hide()
+                            jQuery('#modal-moredetails').modal('show')
+
+                            $("#sdmoredetails").click(function () {
+                                $("#sitedep-moredetails").toggle();
+                                $("#sdlessdetailsDiv").show();
+                                $("#sdmoredetailsDiv").hide();
+                            });
+
+                            $("#sdlessdetails").click(function () {
+                                $("#sitedep-moredetails").toggle();
+                                $("#sdmoredetailsDiv").show();
+                                $("#sdlessdetailsDiv").hide();
+                            });
+							//End Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up when error occurs while creating task
+                        }
+                    });
+                }
+                else {
+                    jQuery('#modal-2').modal('show')
+                    $("#text").html("Please Select Record to Create Dependency Task.")
+                }
+
+            }
+            else {
+                jQuery('#modal-2').modal('show')
+                $("#text").html("Already dependent Job exists for the Activity # " + taskid + " Please delink the activity in SDT Schedule.")
+            }
+        });
+
+        //}
+    });
+</script>

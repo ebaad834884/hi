@@ -1,0 +1,42 @@
+﻿@model NewSDTApplication.ViewModels.SiebelTaskResponseViewModel
+
+<div class="panel-default">
+    <div class="panel-heading">FMI Details</div>
+    <div class="panel panel-body">
+        @if (Model != null)
+        {
+            //foreach (var client in Model)
+            //{
+            <div class="row">
+                <div class="col-md-offset-0">
+                    <label class="col-md-4 control-label text-right" for="fmino">FMI No:</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="fmino" name="fmino" type="text" value="@Model.SiebelResponseAttributes.serviceRequest.fMINumber" disabled />
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-md-offset-0">
+                        <label class="col-md-4 control-label text-right" for="fmitype">FMI Type:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="fmitype" name="fmitype" type="text" value="Something" disabled />
+                    </div>
+                </div>*@
+            <div class="row">
+                <div class="col-md-offset-0">
+                    <label class="col-md-4 control-label text-right" for="fmidue">FMI Due Date:</label>
+                </div>
+                <div class="col-md-2">
+                    <input id="fmiduedate" name="fmiduedate" type="text" value="@(Model.SiebelResponseAttributes.serviceRequest.fmiDueDate == null ? string.Empty : Model.SiebelResponseAttributes.serviceRequest.fmiDueDate)" disabled />
+                    @*<input id="fmiduedate" name="fmiduedate" type="date" value="@(Model.SiebelResponseAttributes.serviceRequest.fmiDueDate ==null ? string.Empty :string.Format("dd/MM/yyyy", (Convert.ToDateTime(Model.SiebelResponseAttributes.serviceRequest.fmiDueDate))))" disabled />*@
+                    @*<input id="fmiduedate" name="fmiduedate" type="date" value="@(Model.SiebelResponseAttributes.serviceRequest.fmiDueDate ==null ? string.Empty : Model.SiebelResponseAttributes.serviceRequest.fmiDueDate)" disabled />*@
+                    @*@Model.SiebelResponseAttributes.serviceRequest.fmiDueDate*@
+                </div>
+            </div>
+            //}
+        }
+
+    </div>
+</div>
+

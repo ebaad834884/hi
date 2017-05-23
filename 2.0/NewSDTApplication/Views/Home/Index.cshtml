@@ -1,0 +1,1490 @@
+﻿@using System.Web.Helpers;
+@model NewSDTApplication.ViewModels.SiebelTaskResponseViewModel
+@using System.Web.Optimization;
+
+@{
+    ViewBag.Title = "Home Page";
+
+}
+@*TFSTest*@
+<script src="https://maps.googleapis.com/maps/api/js?&client=gme-gemedicalsystems&v=3.exp&sensor=false"></script>
+<!-- Google Maps API -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!-- Google CDN for jQuery -->
+
+
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/fonts/css/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/css/animate.min.css" rel="stylesheet" />
+<link href="~/Content/css/custom.css" rel="stylesheet" />
+<link href="~/Content/css/icheck/flat/green.css" rel="stylesheet" />
+<link href="~/Content/css/normalize.css" rel="stylesheet" />
+<link href="~/Content/css/ion.rangeSlider.css" rel="stylesheet" />
+<link href="~/Content/css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+
+
+
+<link href="~/Content/css/nprogress.css" rel="stylesheet" />
+<script src="~/Content/js/jquery.min.js"></script>
+
+<script src="~/Scripts/GoogleMapUtil.js"></script>
+
+@*<style>
+        .table-condensed thead tr th:nth-child(1),
+         .table-condensed thead tr th:nth-child(3) {
+            display: none;
+        }
+    </style>*@
+
+@*<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>*@
+<script type="text/javascript" src="~/Content/DatePicker/moment.js"></script>
+<script type="text/javascript" src="~/Content/DatePicker/daterangepicker.js"></script>
+
+<link href="~/Content/css/bootstrap-select.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/bootstrap-select.js"></script>
+
+@if (Model.SiebelResponseAttributes.serviceRequest.status == "Closed")
+{
+    <div id="ClosedDiv" style="height: 100%; width: 100%; background-color: grey; position: fixed; opacity: 0.90; z-index: 3147483648; display: block; clear: both;">
+        <div style="width: 70%; text-align: center; margin: auto; margin-top: 20%;">
+            <img src="~/Images/Error.png" style="margin-left: 0;">
+            <samp style="color: white; font-size: 25px;">Activity is closed. Check status of activity in Siebel!</samp>
+        </div>
+    </div>
+}
+else if (Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() > 0)
+{
+    if (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].status == "Closed")
+    {
+        <div id="ClosedDiv" style="height: 100%; width: 100%; background-color: grey; position: fixed; opacity: 0.90; z-index: 3147483648; display: block; clear: both;">
+            <div style="width: 70%; text-align: center; margin: auto; margin-top: 20%;">
+                <img src="~/Images/Error.png" style="margin-left: 0;">
+                <samp style="color: white; font-size: 25px;">Activity is closed. Check status of activity in Siebel!</samp>
+            </div>
+        </div>
+    }
+}
+
+
+<body onload="GetSiteSytemClickTaskCount()" class="nav-md">
+
+    <div class=" container body">
+        <div class="main_container">
+            <!-- page content -->
+
+
+
+
+
+            <div class="right_col" role="main">
+                <div class="">
+
+                    <div class="page-title">
+                        <div class="title_left">
+                        </div>
+                        <div class="title_right">
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="col-md-4 mbottom">
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">SR Number:</label>
+                                        <div class="col-md-8 col-sm-9 col-xs-12">
+                                            <input type="text" placeholder=@Model.SiebelResponseAttributes.serviceRequest.srNumber disabled="disabled" class="form-control ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mbottom">
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">Activity Number:</label>
+                                        <div class="col-md-8 col-sm-9 col-xs-12">
+                                            <input type="text" placeholder=@Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].activityId disabled="disabled" class="form-control ">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mbottom">
+
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">Service Region:   </label>
+                                        <div class="col-md-8 col-sm-9 col-xs-12">
+                                            <input type="text" placeholder=@Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].serviceRegion disabled="disabled" class="form-control ">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @*<div class="col-md-4 mbottom" id="APPSTART">
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">Appointment Start</label>
+                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                <input type="text" id="SDTrequestAppointmentStartDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentStart disabled="disabled" class="form-control ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mbottom" id="APPFINISH">
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">Appointment Finish</label>
+                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                <input type="text" id="SDTrequestAppointmentFinishDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentFinish disabled="disabled" class="form-control ">
+                                            </div>
+                                        </div>
+                                    </div>*@
+
+                                
+                                @*Jayesh Soni - US82 - 13/04/2017 - SR Description Text Box on Landing Page*@
+                                @*<div class="col-md-4 mbottom">
+
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">SR Description:   </label>
+                                        <div class="col-md-8 col-sm-9 col-xs-12">
+                                            <textarea rows="2" style="width: 1100px; height: 50px;" maxlength="256" id="txtSRDescription" onkeyup="changedSR()" class="form-control" onkeydown="this.value = this.value.replace(/[<\>]/g, '')">@ViewBag.SRDescription</textarea>
+                                            @Html.TextAreaFor(model=>@ViewBag.SRDescription , new { @class = "required", style = " rows=10, columns=40" })
+                                        </div>
+                                    </div>
+
+                                </div>*@
+                                @*changes ends*@
+
+                                @*Jayesh Soni - US82 - 13/04/2017 - SR Description Text Box on Landing Page**@
+                                @*<div class="col-md-4 mbottom">
+                                        <div class="form-group form-horizontal">
+                                            <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">SR Description:   </label>
+                                            <div class="col-md-8 col-sm-9 col-xs-12">
+                                                <textarea rows="2" style="width: 1111px; height: 60px;" maxlength="256" id="srdesc" onkeydown="this.value = this.value.replace(/[<\>]/g, '')" class="form-control">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].description)</textarea>                                               
+                                            </div>
+                                        </div>
+                                </div>*@
+
+
+                                <div class="col-md-4 mbottom">
+                                    <div class="form-group form-horizontal">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12 lft">SR Description:</label>
+                                        <div class="col-md-8 col-sm-9 col-xs-12">
+                                            <textarea placeholder="" rows="3" style="width: 1111px; height: 60px; line-height:1.5;" maxlength="256" onchange="this.value = this.value.replace(/[<\>]/g, '')" class="form-control" id="srdesc">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].description)</textarea>
+                                        </div>
+                                    </div>
+                               </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+
+
+                                <div data-example-id="togglable-tabs" role="tabpanel" class="">
+                                    <ul role="tablist" class="nav nav-tabs bar_tabs" id="myTab">
+                                        <li class="active" style="border: solid #E6E9ED; border-bottom: none; " role="presentation">
+                                            <a style="height:37px" aria-expanded="true" data-toggle="tab" role="tab" id="hometab" href="#tab_content1">New Visit</a>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div aria-labelledby="home-tab" id="tab_content1" class="tab-pane fade active in" role="tabpanel">
+
+
+                                            <div class="row">
+                                                <div class="col-md-7 col-xs-12">
+                                                    @if (@Model.SiebelResponseAttributes.serviceRequest.srType == "Installation")
+                                                    {
+                                                        @Html.Partial("~/Views/Home/_InstallationDispatchDetail.cshtml", Model);
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <div class="x_panel">
+                                                            <div class="x_title">
+                                                                <h2>Main Dispatch Details</h2>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="x_content">
+
+                                                                <form class="form-horizontal form-label-left input_mask">
+
+                                                                    <div id="taskModifyVisit" hidden="hidden">
+                                                                        <div class="form-group form-horizontal">
+                                                                            <label class="control-label col-md-2 col-sm-2 col-xs-8">Task ID:</label>
+                                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                                <input type="text" id="checktaskid" style="width:105%" name="checktaskid" disabled="disabled" class="form-control ">
+                                                                            </div>
+
+
+                                                                            <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Call ID:</label>
+                                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                                <input type="text" class="form-control" id="callIDdata" name="callIDdata" disabled="disabled" />
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group form-horizontal">
+                                                                            <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Status:</label>
+                                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                                <input type="text" id="checkStatval" style="width:105%" name="checkStatval" disabled="disabled" class="form-control ">
+                                                                            </div>
+
+
+
+
+                                                                            <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Assigned:</label>
+                                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                                <input type="text" id="checkfse" name="checkfse" disabled="disabled" class="form-control ">
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="ln_solid"></div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 fseb" style=" padding-top: 8px;">FSE 1:</label>
+                                                                        <div class="col-md-4 ctnc">
+                                                                            <label>Skills</label>
+                                                                            <select class="form-control" id="Skillfse1">
+                                                                                @*<option value="0">Any FE</option>
+                                                                                    <option value="1">Level 1</option>
+                                                                                    <option value="2">Level 2</option>
+                                                                                    <option value="3">Level 3</option>*@
+                                                                                @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse1)</option>*@
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-3 ctnc">
+                                                                            <label>SSO ID</label>
+                                                                            <div class="button-group">
+                                                                                @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                                                                                <select class="selectpicker" multiple id="SSOI1" onchange="imagefse1()">
+                                                                                    @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@
+
+                                                                                </select>
+                                                                            </div>
+                                                                            @*<select class="form-control" id="fse1">
+                                                                                    <option value="1">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)</option>
+                                                                                    <option value="2">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)  @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) </option>
+                                                                                </select>*@
+                                                                        </div>
+                                                                        <div class="col-md-1" style="text-align:center;">
+                                                                            <br>
+                                                                            <img src="/Content/images/unnamed.png" id="imgPreferedPSE1" style="display:none;padding-left:28px!important;margin-top:12px;" />
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <label>Required</label>
+                                                                            <div class="checkbox">
+                                                                                <label class="">
+                                                                                    <div class="icheckbox_flat-green checked" style="position: relative;"><input type="checkbox" id="chkfse1" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 2:</label>
+                                                                        <div class="col-md-4">
+                                                                            <select class="form-control" id="Skillfse2" disabled>
+                                                                                @*<option value="0">Any FE</option>
+                                                                                    <option value="1">Level 1</option>
+                                                                                    <option value="2">Level 2</option>
+                                                                                    <option value="3">Level 3</option>*@
+                                                                                @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse2)</option>*@
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="button-group" id="fse1">
+                                                                                @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                                                                                @*<select class="form-control" multiple id="SSoid2" onchange="ImageFse2()" disabled>
+                                                                                    @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@
+
+                                                                                <select class="form-control" id="Skillfse2" disabled style="width:154px"> </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-1" style="text-align:center;">
+                                                                            <br>
+                                                                            <img src="/Content/images/unnamed.png" id="imgPreferedPSE2" style="display:none;padding-left:28px!important;margin-top:-18px;" />
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <div class="checkbox">
+                                                                                <label class="">
+                                                                                    <div class="icheckbox_flat-green1" style="position: relative;">
+                                                                                        <input type="checkbox" disabled id="chkfse2" class="flat" style="position: absolute; opacity: 0;">
+                                                                                        <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins>
+                                                                                    </div>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 3:</label>
+                                                                        <div class="col-md-4">
+                                                                            <select class="form-control" id="Skillfse3" disabled>
+                                                                                @*<option value="0">Any FE</option>
+                                                                                    <option value="1">Level 1</option>
+                                                                                    <option value="2">Level 2</option>
+                                                                                    <option value="3">Level 3</option>*@
+                                                                                @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse3)</option>*@
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="button-group" id="fse1" onchange="ImageFse3()">
+                                                                                <select class="form-control" id="Skillfse2" disabled style="width: 154px"> </select>
+                                                                                @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                                                                                @*<select class="form-control" multiple id="SSoid3" disabled>*@
+                                                                                @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@
+                                                                                @*</select>*@
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-1" style="text-align:center;">
+                                                                            <br>
+                                                                            <img src="/Content/images/unnamed.png" id="imgPreferedPSE3" style="display:none;padding-left:28px!important;margin-top:-18px;" />
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <div class="checkbox">
+                                                                                <label class="">
+                                                                                    <div class="icheckbox_flat-green1" style="position: relative;"><input type="checkbox" id="chkfse3" disabled class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Visit Duration(Mins):</label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <input class="form-control input-sm" id="taskduration" name="taskduration" type="number" min="0" maxlength="5" style="padding-bottom: 3px;padding-top: 1px;" />
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    @if (Model.SiebelResponseAttributes.serviceRequest.earlyStart.ToString() == "1/1/0001 12:00:00 AM")
+                                                                    {
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Early Start</label>
+
+                                                                            <div class="col-md-6 col-md-offset- demo">
+
+
+                                                                                <input type="text" id="txtestart" class="form-control" value="">
+                                                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+
+                                                                            </div>
+                                                                            @*<div class="col-md-3 col-md-offset- demo" style="color:red" id="lestart"></div>*@
+
+                                                                            @*<div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                    <fieldset>
+                                                                                        <div class="control-group">
+                                                                                            <div class="controls">
+                                                                                                <div class="col-md-6 xdisplay_inputx form-group has-feedback pmd1">
+                                                                                                    <input type="text" aria-describedby="inputSuccess2Status" placeholder="Early Start" id="txtestart" class="form-control has-feedback-left" value="@Model.SiebelResponseAttributes.serviceRequest.earlyStart.ToString("dd/MM/yyyy hh:mm")">
+                                                                                                    <span aria-hidden="true" class="fa fa-calendar-o form-control-feedback left"></span>
+                                                                                                    <span class="sr-only" id="inputSuccess2Status">(success)</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </div>*@
+                                                                            <div class="col-md-3" id="lEStart" style="color: red;font-weight:bold;margin-top:8px;">
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Early Start</label>
+
+                                                                            <div class="col-md-6 col-md-offset- demo">
+
+
+                                                                                <input type="text" id="txtestart" class="form-control" value="@Model.SiebelResponseAttributes.serviceRequest.earlyStart.ToString("dd/MM/yyyy HH:mm tt")">
+                                                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+
+                                                                            </div>
+
+                                                                            <div class="col-md-3" id="lEStart" style="color: red;font-weight:bold;margin-top:8px;">
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+
+                                                                    @if (Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString() == "1/1/0001 12:00:00 AM")
+                                                                    {
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Late Start</label>
+                                                                            <div class="col-md-6 col-md-offset- demo">
+
+                                                                                <input type="text" id="txtlstart" class="form-control" value="">
+                                                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                                            </div>
+                                                                            @*<div class="col-md-4" id="lLStart" style="color: red; font-weight:bold;">*@
+                                                                            @*</div>*@
+                                                                            <div class="col-md-3 col-md-offset- demo" style="color:red;font-weight:bold;margin-top:8px;" id="lLStart"></div>
+                                                                            @*<div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                    <fieldset>txtlstart
+                                                                                        <div class="control-group">
+                                                                                            <div class="controls">
+                                                                                                <div class="col-md-6 xdisplay_inputx form-group has-feedback pmd1">
+                                                                                                    <input type="text" aria-describedby="inputSuccess2Status2" placeholder="Late Start" id="txtlstart" class="form-control has-feedback-left" value="@Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString("dd/MM/yyyy hh:mm")">
+                                                                                                    <span aria-hidden="true" class="fa fa-calendar-o form-control-feedback left"></span>
+                                                                                                    <span class="sr-only" id="inputSuccess2Status2">(success)</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </div>*@
+                                                                        </div>
+                                                                    }
+
+                                                                    else
+                                                                    {
+
+
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Late Start</label>
+                                                                            <div class="col-md-6 col-md-offset- demo">
+
+                                                                                <input type="text" id="txtlstart" class="form-control" value="@Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString("dd/MM/yyyy HH:mm tt")">
+                                                                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                                                            </div>
+                                                                            @*<div class="col-md-4" id="lLStart" style="color: red; font-weight:bold;">*@
+                                                                            @*</div>*@
+                                                                            <div class="col-md-3 col-md-offset- demo" style="color:red;font-weight:bold;margin-top:8px;" id="lLStart"></div>
+                                                                            @*<div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                    <fieldset>txtlstart
+                                                                                        <div class="control-group">
+                                                                                            <div class="controls">
+                                                                                                <div class="col-md-6 xdisplay_inputx form-group has-feedback pmd1">
+                                                                                                    <input type="text" aria-describedby="inputSuccess2Status2" placeholder="Late Start" id="txtlstart" class="form-control has-feedback-left" value="@Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString("dd/MM/yyyy hh:mm")">
+                                                                                                    <span aria-hidden="true" class="fa fa-calendar-o form-control-feedback left"></span>
+                                                                                                    <span class="sr-only" id="inputSuccess2Status2">(success)</span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </fieldset>
+                                                                                </div>*@
+                                                                        </div>
+
+                                                                    }
+                                                                    @*<div class="col-md-4" id="lLStart" style="color: red; font-weight:bold;">
+                                                                        </div>*@
+
+
+                                                                    <div class="form-group" id="appWindow">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Appointment Window:</label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <div class="col-md-3">
+
+                                                                                <input type="radio" value="AM/PM" id="appWindow" name="optionsRadios"> (AM/PM)
+
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <input type="radio" value="1 Hour" id="appWindow" name="optionsRadios"> 1 Hour
+                                                                            </div>
+                                                                            <div class="col-md-3">
+
+                                                                                <input type="radio" value="2 Hour" checked="checked" id="appWindow" name="optionsRadios"> 2 Hour
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div id="taskModifyData" class="form-group form-horizontal" hidden="hidden">
+                                                                        <div class="form-group form-horizontal">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12 ">Appointment Start:</label>
+                                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                                @*<input type="text" id="SDTrequestAppointmentStartDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentStart disabled="disabled" class="form-control ">*@
+                                                                                <input type="text" id="SDTrequestAppointmentStartDte" name="SDTrequestAppointmentStartDte" disabled="disabled" class="form-control ">
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                        <div class="form-group form-horizontal">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12 ">Appointment Finish:</label>
+                                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                                @*<input type="text" id="SDTrequestAppointmentFinishDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentFinish disabled="disabled" class="form-control ">*@
+                                                                                <input type="text" id="SDTrequestAppointmentFinishDte" name="SDTrequestAppointmentFinishDte" disabled="disabled" class="form-control ">
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                            Task Notes: <span class="required"></span>
+                                                                        </label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <textarea placeholder="" rows="3" maxlength="5000" class="form-control" style="line-height:1.5;" id="tasknotes">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].comment)</textarea>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    @*<div class="ln_solid"></div>*@
+
+                                                                    @*<div class="form-group">
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                                                <button class="btn btn-info col-lg-2" value="Site" type="button" id="btnSite">Site @Model.ClickTaskResponseAttributes.TaskResponseBySite</button>
+                                                                                <button class="btn btn-info col-lg-3" type="button" title="System" id="btnSystem">System @Model.ClickTaskResponseAttributes.TaskResponseBySystem</button>
+                                                                            </div>
+                                                                        </div>*@
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                            <button class="btn btn-info col-lg-2" type="button" id="btnSite">Site @*@Model.ClickTaskResponseAttributes.TaskResponseBySite*@</button>
+                                                            <button type="button" class="btn btn-success-Bubble btn-circle" id="btnPotentialDependencySite">@Model.ClickTaskResponseAttributes.TaskResponseBySite</button><button type="button" id="btnActualDependencySite" class="btn btn-danger-Bubble btn-circle">0</button>
+                                                            <button class="btn btn-info col-lg-3" type="button" title="System" id="btnSystem">System @*@Model.ClickTaskResponseAttributes.TaskResponseBySystem*@</button>
+                                                            <button type="button" id="btnPotentialDependencySystem" class="btn btn-success-Bubble btn-circle">@Model.ClickTaskResponseAttributes.TaskResponseBySystem</button><button type="button" id="btnActualDependencySystem" class="btn btn-danger-Bubble btn-circle">0</button>
+                                                            @*<button class="btn btn-success col-lg-2" type="submit"> &nbsp;&nbsp;Other&nbsp; &nbsp;</button>*@
+                                                        </div>
+
+
+                                                        @*<div>
+                                                                <button type="button" id="btnSite" style="position: relative; float: right; clear: left; margin-right: 660px;margin-bottom:-2px; background-color: red; border-radius: 78px; color: white;">Red</button>
+                                                                <button class="btn btn-info col-lg-2" type="button" id="btnSite" style="margin-bottom:-4px;">Site @Model.ClickTaskResponseAttributes.TaskResponseBySite</button>
+                                                                <button type="button" id="btnSite" style="position: relative; float: left; clear: left; margin-left: 100px; background-color: green; border-radius: 78px; color: white;">Grn</button>
+                                                            </div>*@
+                                                    </div>
+                                                    @*<div class="x_panel">
+                                                            <div class="x_title">
+                                                                <h2>On the job training details</h2>
+
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                            <div class="x_content">
+                                                                <br>
+                                                                <form class="form-horizontal form-label-left input_mask">
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">OJT RFS No: </label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <input type="text" placeholder="123" disabled="disabled" class="form-control fcwa">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 colct1">OJT trainees engineer no: </label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <input type="text" placeholder="456" disabled="disabled" class="form-control fcwa">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">OJT trainer engineer no:</label>
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                            <input type="text" placeholder="Eng" disabled="disabled" class="form-control fcwa">
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </form>
+                                                            </div>
+                                                        </div>*@
+
+
+
+
+                                                </div>
+
+                                                <div class="col-md-5 col-xs-12">
+                                                    <div class="x_panel">
+                                                        <div class="x_title">
+                                                            <h2>Part Tool Details(<span id="countdata"></span>)</h2>
+                                                            <label id="a1"></label> <label id="slash" style="display:none">/</label> <label id="a2"></label>
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group ctnc">
+                                                                <img src="../Images/minus-disable.png" id="imgdel" onclick="AsyncConfirmGooglemapYesNo()" style="background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;" />
+                                                                <img src="../Images/plus.png" id="imgplus" onclick="AddRecordInit()" style="background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;" />
+                                                                <img src="../Images/previous-disable.png" id="imgPrevious" onclick="prevdata()" style="background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;" />
+                                                                <img src="../Images/next-disable.png" id="imgnext" onclick="nextdata()" style="background-color:transparent;background-repeat:no-repeat;border:none;cursor:pointer;overflow:hidden;outline:none;" />
+
+                                                            </div>
+
+
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="x_content">
+                                                            <br>
+                                                            <form id="PartToolDetails" class="form-horizontal form-label-left input_mask">
+                                                                <div id="txtblnk">
+                                                                    <label id="checkpartstatus" style="width: 600px; text-align: center; color: red;"></label>
+                                                                    <label id="checkpartcheckclick" style="width: 600px; text-align: center; color: green;"></label>
+
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Delivery Type:</label>
+                                                                    <div class="col-md-8 col-sm-9 col-xs-12">
+                                                                        <select id="deliverytype" class="form-control">
+                                                                            <option>--Please Select--</option>
+                                                                            <option>Customer Site</option>
+                                                                            <option>FE Address</option>
+                                                                            <option>Warehouse</option>
+                                                                            <option>Drop Point</option>
+                                                                            <option>GE Office</option>
+                                                                            <option>Other</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Comments:</label>
+                                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                        <textarea class="form-control" rows="3" id="txtPartComments" onblur="PartCommentsChange()" placeholder="" disabled="disabled"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Delivery Date:<span class="required">*</span></label>
+
+                                                                    <div class="col-md-8 col-md-offset- demo">
+
+
+                                                                        <input type="text" id="txtDelivery" class="form-control" onchange="DeliveryDateValidations()" onblur="DeliveryDateOnblur()" />
+                                                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                        Address: <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                        @*<input class="form-control" type="text" name="address" id="address" value="" onfocus="ValidateError(this)" onfocusout="ValidateSucess(this)" />*@
+                                                                        @*Validation of Address field of Part Tool Details - US208 - 18/4/2017 by Ebaad - Allowed a - z, A - Z, 0 - 9, '.' & ',' characters *@
+                                                                        <textarea class="form-control" rows="3" id="address" onfocus="ValidateError(this)" onfocusout="    ValidateSucess(this)" onkeyup="    this.value = this.value.replace(/[`\!\#\$\%\^\&\&quot;\&#64;\*\(\)\~\[\]\{\}\;\:\'\<\>\-\+\/\?\|\–\_\=]/g, '')"></textarea>                                                                        
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-4 col-xs-12" style=" width: 38px; padding: 0px;">
+                                                                        <img id="addressS" src="../images/tick.png" style="display:none" />
+                                                                        <img id="addressE" src="../images/cross.png" style="display:none" />
+                                                                        <img title="Address can only contain A - Z, a - z, 0 - 9, ' . ' & ' , '" src="../images/questionmark.png">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-2 col-xs-12">
+                                                                        Post Code: <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                        @*Validation of Postal Code field of Part Tool Details - US208 - 18/4/2017 by Ebaad - Allowed only 0 - 9 numerals *@
+                                                                        <input class="form-control" type="text" name="postcode" id="postcode" value="" onfocus="ValidateError(this)" onfocusout="ValidateSucess(this)" onkeyup="this.value = this.value.replace(/[^\d\-\ ]/g, '')" title="Postal Code can only contain 0-9" />
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-4 col-xs-12" style=" width: 38px; padding: 0px;">
+                                                                        <img id="postcodeS" src="../images/tick.png" style="display:none" />
+                                                                        <img id="postcodeE" src="../images/cross.png" style="display:none" />
+                                                                        <img title="Postal code can only contain 0 - 9" src="../images/questionmark.png">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                        City: <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                        @*Validation of City of Part Tool Details - US208 - 18/4/2017 by Ebaad - Allowed a - z & A - Z alphabetical characters *@
+                                                                        <input type="text" class="form-control" name="city" id="city" value="" onfocus="ValidateError(this)" onfocusout="ValidateSucess(this)" onkeyup="this.value = this.value.replace(/[^\a-\z\A-\Z\ ]/g, '')" title="Address can only contain A-Z & a-z" />
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-4 col-xs-12" style=" width: 38px; padding: 0px;">
+                                                                        <img id="cityS" src="../images/tick.png" style="display:none" />
+                                                                        <img id="cityE" src="../images/cross.png" style="display:none" />
+                                                                        <img title="City can only contain A- Z & a - z" src="../images/questionmark.png">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                                                        Country: <span class="required">*</span>
+                                                                    </label>
+                                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                        <select class="form-control" id="mySelect">
+                                                                            @*<option>loading</option>*@
+                                                                            <option></option>
+                                                                        </select>
+                                                                    </div>
+                                                                    @*<div class="ln_solid"></div>*@
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3 fsetop">
+                                                                            <!-- Modal -->
+                                                                            <input type="hidden" id="dropbox" value="" />
+                                                                            <input type="hidden" id="siteaddress" value="" />
+
+                                                                            <button id="checkaddress" onclick="AsyncConfirmYesNo()" class="btn btn-info">Check Address</button>
+                                                                            <!-- Modal -->
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-1">
+                                                                            &nbsp;
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Modal -->
+                                                                    <div class="modal fade" id="CheckAddresspopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-lg">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Address</h4>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <div id='map_canvas'></div>
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <div class="panel panel-info ">
+                                                                                        Are you sure ?
+                                                                                        <button id="btnYesConfirmYesNo"
+                                                                                                type="button" class="btn btn-primary">
+                                                                                            Yes
+                                                                                        </button>
+                                                                                        <button id="btnNoConfirmYesNo"
+                                                                                                type="button" class="btn btn-primary">
+                                                                                            No
+                                                                                        </button>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- Modal -->
+                                                                    <br />
+
+                                                                    <div class="modal fade" id="Googlemappopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-lg">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Part Tool Details</h4>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <div class="panel panel-info ">
+                                                                                        Do you want to cancel parts pick up task ?
+                                                                                        <button id="btnYesConfirmGoogleMap"
+                                                                                                type="button" class="btn btn-primary">
+                                                                                            Yes
+                                                                                        </button>
+                                                                                        <button id="btnNoConfirmGoogleMap"
+                                                                                                type="button" class="btn btn-primary">
+                                                                                            No
+                                                                                        </button>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="modal fade" id="DuplicateAddresss" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-sm">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                                                                    <h4 class="modal-title" id="myModalLabel">Part Tool Details</h4>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <div class="panel panel-info " style="text-align:left">
+                                                                                        Same Address Already Exists
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+
+
+                                                                </div>
+                                                                @*<div class="ln_solid"></div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                                                            <button type="submit" class="btn btn-primary">Check Address</button>
+                                                                        </div>
+                                                                    </div>*@
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    @if (Model != null)
+                                                    {
+                                                        if (@Model.SiebelResponseAttributes.serviceRequest.srType == "PM")
+                                                        {
+                                                            <div class="x_panel">
+                                                                <div class="x_title">
+                                                                    <h2>Preventive Maintenance Details</h2>
+
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="x_content">
+                                                                    <br>
+                                                                    <form class="form-horizontal form-label-left input_mask">
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">LOS </label>
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                <input type="text" id="pmno" name="pmno" class="form-control fcwa" disabled="disabled" placeholder="@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gehcPMLevelofService + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gehcSequenceNumber)">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Scheduled Date</label>
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12 ">
+                                                                                <input type="text" id="scheduleddate" name="scheduleddate" class="form-control fcwa" disabled="disabled" placeholder="@Model.SiebelResponseAttributes.serviceRequest.gEHCSchedDate">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Desired Date</label>
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                <input type="text" id="desireddate" name="desireddate" class="form-control fcwa" disabled="disabled" value="@Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].gEHCDesiredDateTime">
+                                                                            </div>
+                                                                        </div>
+
+
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+
+                                                        else if (@Model.SiebelResponseAttributes.serviceRequest.srType == "FMI")
+                                                        {
+                                                            <div class="x_panel">
+                                                                <div class="x_title">
+                                                                    <h2>FMI Details </h2>
+
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                                <div class="x_content">
+                                                                    <br>
+                                                                    <form class="form-horizontal form-label-left input_mask">
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">FMI No: </label>
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                <input type="text" class="form-control fcwa" name="fmino" id="fmino" disabled="disabled" placeholder="@Model.SiebelResponseAttributes.serviceRequest.fMINumber">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">FMI Due Date:</label>
+                                                                            <div class="col-md-9 col-sm-9 col-xs-12 ">
+                                                                                <input type="text" id="fmiduedate" name="fmiduedate" class="form-control fcwa" disabled="disabled" placeholder="@(Model.SiebelResponseAttributes.serviceRequest.fmiDueDate == null ? string.Empty : Model.SiebelResponseAttributes.serviceRequest.fmiDueDate)">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        @*<div class="form-group">
+                                                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Desired Date</label>
+                                                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                                    <input type="text" class="form-control fcwa" disabled="disabled" placeholder="">
+                                                                                </div>
+                                                                            </div>*@
+
+
+
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else if (@Model.SiebelResponseAttributes.serviceRequest.srType == "Corrective")
+                                                        {
+
+                                                        }
+                                                    }
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <!-- /page content -->
+                                            <!-- /bottton -->
+
+
+
+                                        </div>
+                                        <div aria-labelledby="profile-tab" id="tab_content2" class="tab-pane fade" role="tabpanel">
+
+
+                                        </div>
+                                        <div aria-labelledby="profile-tab" id="tab_content3" class="tab-pane fade" role="tabpanel">
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="container" style="margin-top:35px;">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-12 col-xs-12 form-group ctnc"></div>
+
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group ctnc">
+                                                <button class="btn btn-info" type="button" id="btnrequestappointment"><i class=" fa fa-paper-plane-o"></i> Request Appointment</button>
+                                            </div>
+                                            @if (Model.ClickTaskResponseAttributes.TaskExists)
+                                            {
+                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group ctnc">
+                                                    <button class="btn btn-warning" type="button" id="modVis"><i class="fa fa-eye"></i> Modify Visit</button>
+                                                </div>
+                                                <script>
+                                                    $('#hometab').text("Modify Visit");
+                                                    $('#taskModifyVisit').show();
+                                                    $('#taskModifyData').show();
+                                                </script>
+                                            }
+                                            else
+                                            {
+
+                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group ctnc">
+                                                    <button type="button" class="btn btn-info" id="creVisNA">
+                                                        <i class="fa fa-eye"></i>Create Visit Without Appt
+
+                                                    </button>
+                                                </div>
+                                            }
+                                            @*<div class="col-md-3 col-sm-12 col-xs-12 form-group ctnc">
+                                                    <button class="btn btn-danger" type="button" id="ignore" onclick="CloseWindow"><i class="fa fa-bell"></i> Ignore Notification</button>
+                                                </div>*@
+                                            @if (Model.ClickTaskResponseAttributes.TaskCancelAllowed)
+                                            {
+                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group ctnc">
+                                                    <button class="btn btn-danger" type="button" id="btnCancelTask"><i class="fa fa-ban"></i> Cancel Task in SDT</button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                {
+                                                    <div class="col-md-3 col-sm-12 col-xs-12 form-group ctnc">
+
+                                                        <button type="button" class="btn btn-dark" id="btnCancelTask" disabled>
+                                                            <i class="fa fa-ban"></i> Cancel Task in SDT
+                                                        </button>
+                                                    </div>
+                                                }
+
+                                            }
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="custom_notifications" class="custom-notifications dsp_none">
+            <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+            <div class="clearfix"></div>
+            <div id="notif-group" class="tabbed_notifications"></div>
+        </div>
+
+
+
+        <!-- /popup Model -->
+        <div class="modal fade" id="modal-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="label-ft1">Do You Really Want To Cancel This Task</div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4 col-sm-3 col-xs-12 label-ft">
+                                Cancellation Reason:
+                                <span class="required" style="color:red;">*</span>
+                            </label>
+                            <div class="col-md-8 col-sm-9 col-xs-12" id="CanclDropdown" onchange="CanclDropdown()">
+
+                                @*@Html.DropDownListFor(m => m.SiebelResponseAttributes.serviceRequest.stvCancelTaskValuesInSDT, new SelectList(NewSDTApplication.Utilities.ClsDropDownHelper.CustomDropDownHelper(NewSDTApplication.Utilities.ClsDropDownHelper.DropDownTypes.CancelTaskValuesInSDType), "Text", "Text"), "Select", new { Id = "IDstvCancelTaskValuesInSDT" })*@
+
+
+                                <select id="CanclTaskDropdown"></select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="cancltask" disabled>Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-3">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modify Task</h4>
+                    </div>
+
+                    <div class="modal-body" id="modifypop">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" id="ModifyNoDepTask" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="modifytask">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-2">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Message</h4>
+                    </div>
+
+                    <div class="modal-body" id="text">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal-ReloadToIndex">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Message</h4>
+                    </div>
+
+                    <div class="modal-body" id="text">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="ReloadToIndex" data-dismiss="modal">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /popup Model -->
+        <div class="modal fade" id="modal-Reload">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Message</h4>
+                    </div>
+
+                    <div class="modal-body" id="TextReload">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="ReloadonClick" data-dismiss="modal">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /popup Model for Cancel Task if Part Tool Details -->
+        <div class="modal fade" id="modal-Part1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Cancel Task</h4>
+                    </div>
+
+                    <div class="modal-body" id="cancelPartPopup">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="canclPTaskModel">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /popup Model for modify Task if Part Tool Details -->
+        <div class="modal fade" id="modal-modifyPart1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modify Task</h4>
+                    </div>
+
+                    <div class="modal-body" id="modifyPartPopup">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="modifyTaskModel">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /popup Model for Cancel Task if System or Site Dependencies -->
+        <div class="modal fade" id="modal-Depnedency">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Cancel Task</h4>
+                    </div>
+
+                    <div class="modal-body" id="cancelPopup">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="canclTaskModel">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /popup Model for Modify Task if System or Site Dependencies -->
+        <div class="modal fade" id="modal-modifysitesystem">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modify Task</h4>
+                    </div>
+
+                    <div class="modal-body" id="modifypopsitesystem">
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" id="ModifyYesDepTask">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /If site doesnot exit -->
+
+        <div class="modal fade" id="sitemodel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+
+                    <div class="modal-body" id="siteidtext">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="BtnValidation" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*Start Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up container*@
+        <div class="modal fade" id="modal-moredetails">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+
+                    <div class="modal-body" id="apptext">
+                    </div>
+
+                    <div class="modal-footer">
+                        <div id="appmoredetailsDiv">
+                            <button type="button" id="appmoredetails" class="details-button">More Details >></button>
+                        </div>
+                        <div id="applessdetailsDiv" style="display:none;">
+                            <button type="button" id="applessdetails" class="details-button">Less Details <<</button>
+                        </div>
+                        <div id="reqapp-moredetails" class="details-text">
+                        </div>
+                        <div>
+                            <button id="BtnValidation" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*End Code - US139 - Added by Ebaad - 19/4/2017 - User Friendly Error Message pop-up container*@
+
+ @*//SR Desc Jayesh Soni*@
+        <div class="modal fade" id="SR">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Alert</h4>
+                    </div>
+
+                    <div class="modal-body" id="SRtext">
+                    </div>
+
+                    <div class="modal-footer">                        
+                        <div id="ShowCompleteSRDescDiv">
+                            <button type="button" id="SRmoredetails" class="details-button">Show Complete Text >></button>
+                        </div>
+                        <div id="HideCompleteSRDescDiv" style="display:none;">
+                            <button type="button" id="SRlessdetails" class="details-button">Hide Complete Text <<</button>
+                        </div>
+                        <div id="CompleteSRDesc" class="details-text">
+                        </div>
+                        <div>
+                            <button id="btntrim" type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script src="~/Content/js/custom.js"></script>
+
+
+
+</body>
+
+
+
+<script src="~/Scripts/CustomValidation.js"></script>
+
+@*<input type="hidden" value="@ViewBag.PartAddress" id="hPartAddress" />*@
+@*Jayesh Soni US -82 13/04/2017 SRDescription*@
+<input type="hidden" value="@ViewBag.SRDescription" id="SRDesc"/>
+<input type="hidden" value="@ViewBag.isValid" id="validSR"/>
+<input type="hidden" value="@ViewBag.CompleteSRDesc" id="completeSRDesc" />
+<input type="hidden" value="@ViewBag.lEarlyStart" id="lES" />
+<input type="hidden" value="@ViewBag.lLateStart" id="lLS" />
+<input type="hidden" value="@ViewBag.SRType" id="hsrType" />
+<input type="hidden" value="@ViewBag.CREntitlementFlag" id="hCREntitlementFlag" />
+<input type="hidden" value="@ViewBag.CRcontractFlag" id="hCRcontractFlag" />
+<input type="hidden" value="@ViewBag.DefaultDate" id="tdefaultDate">
+<input type="hidden" value="@ViewBag.TaskDurationInstall" id="tInstallDuration" />
+<input type="hidden" value="@ViewBag.getCurrentDate" id="tCurrentdate" />
+<input type="hidden" value="@ViewBag.TaskDuration" id="tDuration" />
+<input type="hidden" value="Rajesh" id="htDurationInstall" />
+<input type="hidden" value="@ViewBag.TaskSystemID" id="hTaskSystemID">
+<input type="hidden" value="@ViewBag.TaskSiteID" id="hTaskSiteID">
+<input type="hidden" value="@ViewBag.country" id="hcountry">
+<input type="hidden" value="@ViewBag.city" id="hcity">
+<input type="hidden" value="@ViewBag.street" id="hstreet">
+<input type="hidden" value="@ViewBag.postcode" id="hpostcode">
+<input type="hidden" value="@ViewBag.latitude" id="hlatitude">
+<input type="hidden" value="@ViewBag.longitude" id="hlongitude">
+
+<input type="hidden" value="@ViewBag.ValidateShipToSite" id="ValidateShipToSite">
+<input type="hidden" value="@ViewBag.ValidateSystemId" id="ValidateSystemId">
+
+
+<input type="hidden" value="@ViewBag.calltestiddata" id="hcalltestiddata">
+<input type="hidden" value="@ViewBag.checktaskids" id="hchecktaskid">
+<input type="hidden" value="@ViewBag.checkStatusVal" id="hcheckStatusVal">
+<input type="hidden" value="@ViewBag.checkfses" id="hcheckfse">
+<input type="hidden" value="@ViewBag.appointmentStart" id="happointmentStart">
+<input type="hidden" value="@ViewBag.appointmentFinish" id="happointmentFinish">
+<input type="hidden" value="@ViewBag.deliverydatevalidation" id="hdeliverydatevalidation">
+<input type="hidden" value="@ViewBag.ReqPrefFlag" id="hdnReqPrefFlag">
+<input type="hidden" value="@ViewBag.chkfse1" id="hdnchkfse1">
+<input type="hidden" value="@ViewBag.Profile" id="hdnappwindow">
+<input type="hidden" value="@ViewBag.SiteCountActual" id="hSiteCountActual">
+<input type="hidden" value="@ViewBag.SystemCountActual" id="hSystemCountActual">
+<input type="hidden" value="@ViewBag.EstartEmptyvalue" id="hEstartEmptyvalue">
+<input type="hidden" value="@ViewBag.LstartEmptyvalue" id="hLstartEmptyvalue">
+<input type="hidden" value="@ViewBag.seibleSendTime" id="hseibleSendTime">
+<input type="hidden" value="@ViewBag.siebleReceiveTime" id="hsiebleReceiveTime">
+<input type="hidden" value="@ViewBag.clickSendTime" id="hclickSendTime">
+<input type="hidden" value="@ViewBag.clickReceiveTime" id="hclickReceiveTime">
+<input type="hidden" value="@ViewBag.ReceiveTime" id="hReceiveTime">
+<input type="hidden" value="@ViewBag.taskExistsStatus" id="hTaskExistsStatus">
+
+@*Tejashree - 07/04/2017 - Scope: US210 Contract Popup Issue*@
+<input type="hidden" value="@Session["clickContractAvailabilityFlag"]" id="hclickContractAvailabilityFlag" />
+
+<input type="hidden" id="latitude">
+<input type="hidden" id="longitude">
+<input type="hidden" id="arrayAddress">
+
+<input type="hidden" id="fseid1" value="@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse1)">
+<input type="hidden" id="fseid2" value="@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse2)">
+<input type="hidden" id="fseid3" value="@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse3)">
+<input type="hidden" id="ssoid1" value="@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)">
+
+
+<script>
+ 
+    //changes ends
+    //$("#BtnValidation").click(function () {
+    //    window.close();
+    //})
+
+
+    $('#txtlstart').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "timePicker": true,
+        "autoApply": true,
+        "locale": {
+            "format": "DD/MM/YYYY HH:mm ",
+            "separator": " - ",
+            "applyLabel": "Apply",
+            "cancelLabel": "Cancel",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+            ],
+            "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+            ],
+            "firstDay": 1
+        },
+        //"startDate": "27/10/2015",
+        //"endDate": "02/11/2015"
+    }, function (start, end, label) {
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+    });
+    $('#txtDelivery').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "timePicker": true,
+        "autoApply": true,
+        "locale": {
+            "format": "DD/MM/YYYY HH:mm ",
+            "separator": " - ",
+            "applyLabel": "Apply",
+            "cancelLabel": "Cancel",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+            ],
+            "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+            ],
+            "firstDay": 1
+        },
+
+        "startDate": $('#tdefaultDate').val(),
+        //"endDate": "02/11/2015"
+    }, function (start, end, label) {
+        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+    });
+
+
+</script>
+<script type="text/javascript">
+
+    var PartAddress = [];
+
+    //  populateOldAddress('Customer Site',  'Street', 'PartAddress[i].City', 'ez0001','AUSTRAILA')
+
+    //obj.Status column added by Phani Kanth P.
+    var json = JSON.parse('@Html.Raw(@ViewBag.PartAddresses)');
+
+    for (var i = 0; i < json.length; i++) {
+        var obj = json[i];
+        populateOldAddress(obj.PartDeliveryType, obj.Street, obj.City,
+            obj.Postcode, obj.CountryID, obj.PartComment, obj.deliveryDate, obj.Latitude, obj.Longitude, obj.Number, obj.Status, obj.IsMST, obj.IsCritical)
+    }
+    InitOldAddress();
+    @*//var setdelivaryDate = @ViewBag.DefaultDate.ToString("dd/MM/yyyy HH:mm tt");*@
+
+    // alert(PartAddress);
+
+</script>
+
+
+
+
+
+
+
+

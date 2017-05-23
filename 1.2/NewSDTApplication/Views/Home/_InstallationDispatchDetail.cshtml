@@ -1,0 +1,418 @@
+﻿@model NewSDTApplication.ViewModels.SiebelTaskResponseViewModel
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Main Dispatch Details</h2>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <form class="form-horizontal form-label-left input_mask">
+            <div id="taskModifyVisit" hidden="hidden">
+                <div class="form-group form-horizontal">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-8">Task ID:</label>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" id="checktaskid" style="width:105%" name="checktaskid" disabled="disabled" class="form-control ">
+                    </div>
+
+
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Call ID:</label>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" class="form-control" id="callIDdata" name="callIDdata" disabled="disabled" />
+                    </div>
+                </div>
+
+                <div class="form-group form-horizontal">
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Status:</label>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" id="checkStatval" style="width:105%" name="checkStatval" disabled="disabled" class="form-control ">
+                    </div>
+
+
+
+
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12 ">Assigned:</label>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="text" id="checkfse" name="checkfse" disabled="disabled" class="form-control ">
+                    </div>
+
+                </div>
+                <div class="ln_solid"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12 fseb" style=" padding-top: 8px;">FSE 1:</label>
+                <div class="col-md-4 ctnc">
+                    <label>Skills</label>
+                    <select class="form-control" id="Skillfse1">
+                        @*<option value="0">Any FE</option>
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>*@
+                        @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse1)</option>*@
+                    </select>
+                </div>
+                <div class="col-md-3 ctnc">
+                    <label>SSO ID</label>
+                    <div class="button-group">
+                        @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                        <select class="selectpicker" multiple id="SSOI1" onchange="imagefse1()">
+                            @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@
+                        </select>
+                    </div>
+                    @*<select class="form-control" id="fse1">
+                            <option value="1">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)</option>
+                            <option value="2">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)  @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) </option>
+                        </select>*@
+                </div>
+                <div class="col-md-1" style="text-align:center;">
+                    <br>
+                    <img src="/Content/images/unnamed.png" id="imgPreferedPSE1" style="display:none;padding-left:28px!important;margin-top:14px;" />
+                </div>
+                <div class="col-md-1">
+                    <label>Required</label>
+                    <div class="checkbox">
+                        <label class="">
+                            <div class="icheckbox_flat-green checked" style="position: relative;"><input type="checkbox" id="chkfse1" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-3">
+                    <div class="button-group">
+                        <input title="" class="editOption" style="display: none; padding-left: 28px !important;" id="Validssoid" placeholder="Search by SSO ID" onfocusout="ValidateSSOid(this)" />
+                    </div>
+                </div>
+                <div class="col-md-1" style="text-align:center;">
+
+                    <img id="imgPreferedPSECross" src="../images/cross.png" style="display:none;padding-left:28px!important;margin-top:14px;" />
+                    <img src="/Content/images/unnamed.png" id="imgPreferedPSEValid" style="display:none;padding-left:28px!important;margin-top:14px;" />
+                </div>
+                <div class="col-md-1">
+                  
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 2:</label>
+                <div class="col-md-4">
+                    <select class="form-control" id="Skillfse2">
+                        @*<option value="0">Any FE</option>
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>*@
+                        @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse2)</option>*@
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="button-group" id="fse1">
+                        @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                        <select class="form-control" id="SSoid2" disabled style="width: 154px">
+                                @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@</select>
+                    </div>
+                </div>
+                <div class="col-md-1" style="text-align:center;">
+                    <br>
+                    <img src="/Content/images/unnamed.png" id="imgPreferedPSE2" style="display:none;padding-left:28px!important;margin-top:-18px;" />
+                </div>
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label class="">
+                            <div class="icheckbox_flat-green1" style="position: relative;"><input type="checkbox" id="chkfse2" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 3:</label>
+                <div class="col-md-4">
+                    <select class="form-control" id="Skillfse3">
+                        @*<option value="0">Any FE</option>
+                            <option value="1">Level 1</option>
+                            <option value="2">Level 2</option>
+                            <option value="3">Level 3</option>*@
+                        @*<option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse3)</option>*@
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <div class="button-group" id="fse1" onchange="ImageFse3()">
+                        @*<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" style="width:100%;text-align:right;"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></button>*@
+                        <select class="form-control" disabled style="width: 154px">
+                            @*<option value=@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)>@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy) || @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) || Siebel </option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1" style="text-align:center;">
+                    <br>
+                    <img src="/Content/images/unnamed.png" id="imgPreferedPSE3" style="display:none;padding-left:28px!important;margin-top:-18px;" />
+                </div>
+                <div class="col-md-1">
+                    <div class="checkbox">
+                        <label class="">
+                            <div class="icheckbox_flat-green1" style="position: relative;"><input type="checkbox" id="chkfse3" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            @*<div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 fseb" style=" padding-top: 8px;">FSE 1:</label>
+                    <div class="col-md-4 ctnc">
+                        <label>Skills</label>
+                        <select class="form-control" id="fse1">
+                            <option>Any FE</option>
+                            <option>Level 1</option>
+                            <option>Level 2</option>
+                            <option>Level 3</option>
+                            <option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse1)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 ctnc">
+                        <label>Badge ID</label>
+                        <select class="form-control" id="fse1">
+                            <option value="1">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)</option>
+                            <option value="2">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].primaryOwnedBy)  @(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : (Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerFirstName + " " + Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].ownerLastName)) </option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <label>Required</label>
+                        <div class="checkbox">
+                            <label class="">
+                                <div class="icheckbox_flat-green checked" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 2:</label>
+                    <div class="col-md-4">
+                        <select class="form-control" id="fse1">
+                            <option>Any FE</option>
+                            <option>Level 1</option>
+                            <option>Level 2</option>
+                            <option>Level 3</option>
+                            <option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse2)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="fse1">
+                            <option>Any ID</option>
+                            <option>2508</option>
+                            <option>1257</option>
+                            <option>9485</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="checkbox">
+                            <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">FSE 3:</label>
+                    <div class="col-md-4">
+                        <select class="form-control" id="fse1">
+                            <option>Any FE</option>
+                            <option>Level 1</option>
+                            <option>Level 2</option>
+                            <option>Level 3</option>
+                            <option selected>@(Model.SiebelResponseAttributes == null ? "Level 1" : Model.SiebelResponseAttributes.serviceRequest.gehcFse3)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" id="fse1">
+                            <option>Any ID</option>
+                            <option>2508</option>
+                            <option>1257</option>
+                            <option>9485</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="checkbox">
+                            <label class="">
+                                <div class="icheckbox_flat-green" style="position: relative;"><input type="checkbox" class="flat" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>*@
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-4 col-xs-12 lbt1">Task Duration(In Hours)<span class="required">*</span></label>
+                <div class="col-md-3 col-sm-9 col-xs-12">
+                    <select class="form-control" id="taskduration" name="taskduration" >
+                        <option>0</option>
+                        <option value="8">8 Hours</option>
+                        <option value="16">16 Hours</option>
+                        <option value="24">24 Hours</option>
+                        <option value="32">32 Hours</option>
+                        <option value="40">40 Hours</option>
+                        <option value="48">48 Hours</option>
+                        <option value="56">56 Hours</option>
+                        <option value="64">64 Hours</option>
+                        <option value="72">72 Hours</option>
+                        <option value="80">80 Hours</option>
+                        <option value="88">88 Hours</option>
+                        <option value="96">96 Hours</option>
+                        <option value="104">104 Hours</option>
+                        <option value="112">112 Hours</option>
+                        <option value="120">120 Hours</option>
+                        <option value="128">128 Hours</option>
+                        <option value="136">136 Hours</option>
+                        <option value="144">144 Hours</option>
+                        <option value="152">152 Hours</option>
+                        <option value="160">160 Hours</option>
+                    </select>
+                    @*<input class="form-control input-sm" id="taskduration" name="taskduration" type="number" min="0" value="" style="padding-bottom: 3px;padding-top: 1px;" />*@
+                </div>
+                <div class="col-md-3 col-sm-9 col-xs-12">
+                    <select class="form-control" id="taskhrs" name="taskduration">
+                        <option>0</option>
+                        <option value="1">1 Hours</option>
+                        <option value="2">2 Hours</option>
+                        <option value="3">3 Hours</option>
+                        <option value="4">4 Hours</option>
+                        <option value="5">5 Hours</option>
+                        <option value="6">6 Hours</option>
+                        <option value="7">7 Hours</option>
+                        @*<option value="8">8 Hours</option>
+                            <option value="9">9Hours</option>
+                            <option value="10">10 Hours</option>
+                            <option value="11">11 Hours</option>
+                            <option value="12">12 Hours</option>*@
+                    </select>
+                    @*<input class="form-control input-sm" id="taskHours" name="taskduration" type="number" min="0" value="" style="padding-bottom: 3px;padding-top: 1px;" />*@
+                </div>
+                <div class="col-md-2" id="totalhrs"></div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12 lbt1">Task Start Date Time <span class="required">*</span></label>
+
+                <div class="col-md-6 col-md-offset- demo">
+
+
+                    <input type="text" id="txtestart" class="form-control" value="@Model.SiebelResponseAttributes.serviceRequest.earlyStart.ToString("dd/MM/yyyy HH:mm")">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+
+                </div>
+                <div class="col-md-3 col-md-offset- demo" style="color:red" id="lestart"></div>
+
+                @*<div class="col-md-9 col-sm-9 col-xs-12">
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="col-md-6 xdisplay_inputx form-group has-feedback pmd1">
+                                        <input type="text" aria-describedby="inputSuccess2Status" placeholder="Early Start" id="txtestart" class="form-control has-feedback-left" value="@Model.SiebelResponseAttributes.serviceRequest.earlyStart.ToString("dd/MM/yyyy hh:mm")">
+                                        <span aria-hidden="true" class="fa fa-calendar-o form-control-feedback left"></span>
+                                        <span class="sr-only" id="inputSuccess2Status">(success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>*@
+            </div>
+            <div class="col-md-3" id="lEStart" style="color: red;font-weight:bold;">
+            </div>
+
+
+            @*<div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Late Start</label>
+                <div class="col-md-6 col-md-offset- demo">
+
+                    <input type="text" id="txtlstart" class="form-control" value="@Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString("dd/MM/yyyy hh:mm")">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                </div>
+                @*<div class="col-md-4" id="lLStart" style="color: red; font-weight:bold;">*@
+            @*</div>*@
+            @*<div class="col-md-3 col-md-offset- demo" style="color:red;font-weight:bold" id="lLStart"></div>*@
+            @*<div class="col-md-9 col-sm-9 col-xs-12">
+                    <fieldset>txtlstart
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="col-md-6 xdisplay_inputx form-group has-feedback pmd1">
+                                    <input type="text" aria-describedby="inputSuccess2Status2" placeholder="Late Start" id="txtlstart" class="form-control has-feedback-left" value="@Model.SiebelResponseAttributes.serviceRequest.lateStart.ToString("dd/MM/yyyy hh:mm")">
+                                    <span aria-hidden="true" class="fa fa-calendar-o form-control-feedback left"></span>
+                                    <span class="sr-only" id="inputSuccess2Status2">(success)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>*@
+
+
+            @*<div class="col-md-4" id="lLStart" style="color: red; font-weight:bold;">
+                </div>*@
+
+
+            <div class="form-group" id="appWindow" style="display:none">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">Appointment Window:</label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-3">
+
+                        <input type="radio" checked="checked" value="AM/PM" id="appWindow" name="optionsRadios" style="display:none"> (AM/PM)
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="clear:both;"></div>
+            <div id="taskModifyData" class="form-group form-horizontal" hidden="hidden">
+                <div class="form-group form-horizontal">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 ">Appointment Start:</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @*<input type="text" id="SDTrequestAppointmentStartDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentStart disabled="disabled" class="form-control ">*@
+                        <input type="text" id="SDTrequestAppointmentStartDte" name="SDTrequestAppointmentStartDte" disabled="disabled" class="form-control ">
+                    </div>
+
+
+                </div>
+                <div class="form-group form-horizontal">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 ">Appointment Finish:</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @*<input type="text" id="SDTrequestAppointmentFinishDte" placeholder=@Model.ClickTaskResponseAttributes.AppointmentFinish disabled="disabled" class="form-control ">*@
+                        <input type="text" id="SDTrequestAppointmentFinishDte" name="SDTrequestAppointmentFinishDte" disabled="disabled" class="form-control ">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                    Task Notes: <span class="required"></span>
+                </label>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <textarea placeholder="" rows="3" class="form-control" id="tasknotes">@(Model.SiebelResponseAttributes.serviceRequest.activityDetailList.Count() == 0 ? "" : Model.SiebelResponseAttributes.serviceRequest.activityDetailList[0].comment)</textarea>
+                </div>
+            </div>
+
+            <div class="ln_solid"></div>
+
+            @*<div class="form-group">
+                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                        <button class="btn btn-info col-lg-2" value="Site" type="submit" id="btnSite">Site @Model.ClickTaskResponseAttributes.TaskResponseBySite</button>
+                        <button class="btn btn-info col-lg-3" type="submit" title="System" id="btnSystem" disabled="disabled">System @Model.ClickTaskResponseAttributes.TaskResponseBySystem</button>
+
+                    </div>
+                </div>*@
+        </form>
+    </div>
+</div>
+

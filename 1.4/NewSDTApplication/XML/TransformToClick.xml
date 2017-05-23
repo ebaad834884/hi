@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<serviceRequest>
+  <Regions>
+    <Region>
+      <Name>AUS-Service-WA</Name>
+      <District>WA</District>
+    </Region>
+    <Region>
+      <Name>AUS-Service-NSW</Name>
+      <District>NSW</District>
+    </Region>
+    <Region>
+      <Name>AUS-Service-National</Name>
+      <District>National</District>
+    </Region>
+    <Region>
+      <Name>AUS-Service-QLD</Name>
+      <District>QLD</District>
+    </Region>
+    <Region>
+      <Name>AUS-Service-SA</Name>
+      <District>SA</District>
+    </Region>
+    <Region>
+      <Name>AUS-Service-VIC</Name>
+      <District>VIC</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Busan</Name>
+      <District>Busan</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Daegu</Name>
+      <District>Daegu</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Daejeon</Name>
+      <District>Daejeon</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Gwangju</Name>
+      <District>Gwangju</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-HCIT</Name>
+      <District>HCIT</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Seoul1</Name>
+      <District>Seoul1</District>
+    </Region>
+    <Region>
+      <Name>KOREA-Service-Seoul2</Name>
+      <District>Seoul2</District>
+    </Region>
+    <Region>
+      <Name>MY-Service</Name>
+      <District>Malaysia</District>
+    </Region>
+    <Region>
+      <Name>MY-Service-HCIT</Name>
+      <District>Malaysia</District>
+    </Region>
+    <Region>
+      <Name>NZ-Service</Name>
+      <District>New Zealand</District>
+    </Region>
+  </Regions>
+
+  <srTypes>
+    <srType>
+      <Name>Corrective Repair</Name>
+      <TaskType>Corrective</TaskType>
+    </srType>
+    <srType>
+      <Name>Consulting</Name>
+      <TaskType>Other</TaskType>
+    </srType>
+
+    <srType>
+      <Name>FMI</Name>
+      <TaskType>FMI</TaskType>
+    </srType>
+    <srType>
+      <Name>Move Equipment</Name>
+      <TaskType>Other</TaskType>
+    </srType>
+
+    <srType>
+      <Name>Installation</Name>
+      <TaskType>Installation</TaskType>
+    </srType>
+    <srType>
+      <Name>Sales Support</Name>
+      <TaskType>Other</TaskType>
+    </srType>
+
+    <srType>
+      <Name>Training</Name>
+      <TaskType>Training</TaskType>
+    </srType>
+    <srType>
+      <Name>PM</Name>
+      <TaskType>PM</TaskType>
+    </srType>
+
+  </srTypes>
+  <srSubTypes>
+    <srSubType>
+      <Name>On Request</Name>
+      <TaskSubType>Optional</TaskSubType>
+    </srSubType>
+    <srSubType>
+      <Name>Mandatory</Name>
+      <TaskSubType>Mandatory</TaskSubType>
+    </srSubType>
+    <srSubType>
+      <Name>Safety</Name>
+      <TaskSubType>Safety</TaskSubType>
+    </srSubType>
+    <srSubType>
+      <Name>EMG</Name>
+      <TaskSubType>Mandatory</TaskSubType>
+    </srSubType>
+
+  </srSubTypes>
+  <Statuses>
+    <Status>
+      <EquipmentStatus>1 - System Down</EquipmentStatus>
+      <SystemStatus>1 (System down)</SystemStatus>
+    </Status>
+    <Status>
+      <EquipmentStatus>2 - System Partially Running</EquipmentStatus>
+      <SystemStatus>2 (System partially down)</SystemStatus>
+    </Status>
+    <Status>
+      <EquipmentStatus>3 - System Running</EquipmentStatus>
+      <SystemStatus>3 (System up and running)</SystemStatus>
+    </Status>
+    <Status>
+      <EquipmentStatus>4 - None</EquipmentStatus>
+      <SystemStatus>4 (None)</SystemStatus>
+    </Status>
+  </Statuses>
+</serviceRequest>

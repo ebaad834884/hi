@@ -1,0 +1,57 @@
+﻿@using System.Web.Optimization;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - SDT Booking</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqgrid")
+
+    <nav class="navbar nav_menu ">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <span><img src="~/Content/gelogo.jpg" height="40" alt="logo" /></span>
+                <span><b><u>SDT Booking Application</u></b></span>
+            </a>
+
+        </div>
+    </nav>
+</head>
+@*<body>
+        <div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                    <p>&copy;  Copyright © GEHC</p>
+                    <div style="float: right; width: 25%; margin-top: -22px;">
+                    </div>
+                </footer>
+        </div>
+    </body>*@
+
+<body>
+    <div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer style=" background-color: #34495e !important; height: 52px;font-weight:bold;position: absolute;bottom: 0px;width: 101%;">
+        <p> <font color="white">&copy;  Copyright © GEHC </font></p>
+    </footer>
+
+</body>
+
+
+
+@*@Scripts.Render("~/bundles/jquery")*@
+@Scripts.Render("~/bundles/datetime")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</html>

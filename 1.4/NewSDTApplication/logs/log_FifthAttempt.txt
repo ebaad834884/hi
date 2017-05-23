@@ -1,0 +1,86 @@
+DEBUG 2017-03-09 12:54:17,836    82ms RouteConfig            RegisterRoutes     - ----------------------------------------------------------------- 
+DEBUG 2017-03-09 12:54:17,853    99ms RouteConfig            RegisterRoutes     - RouteConfig;RegisterRoutes; 
+DEBUG 2017-03-09 12:54:18,033   279ms SessionExpireAttribute OnActionExecuting  - ---------------------START-------------------------------------------- 
+DEBUG 2017-03-09 12:54:18,036   282ms SessionExpireAttribute OnActionExecuting  - SessionExpire;OnActionExecuting; Start from here;
+DEBUG 2017-03-09 12:54:18,036   282ms SessionExpireAttribute OnActionExecuting  - 
+DEBUG 2017-03-09 12:54:18,037   283ms SessionExpireAttribute OnActionExecuting  - 
+DEBUG 2017-03-09 12:54:18,037   283ms SessionExpireAttribute OnActionExecuting  - False
+DEBUG 2017-03-09 12:54:18,038   284ms SessionExpireAttribute OnActionExecuting  - False
+DEBUG 2017-03-09 12:54:18,038   284ms SessionExpireAttribute OnActionExecuting  - False
+DEBUG 2017-03-09 12:54:18,140   386ms HomeController         MoveNext           - ----------------------------------------------------------------- 
+DEBUG 2017-03-09 12:54:18,144   390ms HomeController         MoveNext           - HomeController;Index; Start 
+DEBUG 2017-03-09 12:54:18,144   390ms HomeController         MoveNext           - In Home controller Index Method:Activity
+DEBUG 2017-03-09 12:54:18,145   391ms HomeController         MoveNext           - In Home controller Index Method Activity is nullService Request Number:
+DEBUG 2017-03-09 12:54:18,146   392ms HomeController         MoveNext           - HomeController;Index; ActivityNo:1-26SRBH7 SerialNumber:  ServiceRequestID:  ServiceRequestNumber: 1-4764665528 ShipToSite: 1998842 SystemID: 5973XR0010
+DEBUG 2017-03-09 12:54:18,284   530ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:20,566  2812ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:24,268  6513ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:24,268  6513ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:24,815  7060ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; Start
+DEBUG 2017-03-09 12:54:24,816  7061ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:24,816  7061ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:28,020 10266ms CallClickSerrvice      MoveNext           - In ClickCallService.cs GetTasksRequestByPropertyName Method,after index inclusion3202
+DEBUG 2017-03-09 12:54:28,021 10267ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; End
+DEBUG 2017-03-09 12:54:29,769 12015ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI =https://maps.googleapis.com/maps/api/place/textsearch/xml?query=%20H%C3%A0%20N%E1%BB%99i%2C%20Viet%20Nam%2C%20100000&key=AIzaSyAwOexOS-iDaup1-76j6ChVvlVBEIyaHQoEnd of Creating URI for GoogleAddressAPI
+DEBUG 2017-03-09 12:54:29,770 12016ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI using WebRequest: Request=System.Net.HttpWebRequest End
+DEBUG 2017-03-09 12:54:31,676 13921ms riesTimeZoneConversion GoogleAddressCall  - Getting the response from GoogleAddressAPI using GetResponse method
+DEBUG 2017-03-09 12:54:31,711 13956ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleLatLongAPI using WebRequest:request1=System.Net.HttpWebRequest
+DEBUG 2017-03-09 12:54:32,004 14249ms riesTimeZoneConversion GoogleAddressCall  - Getting the response of GoogleLatLongAPI using WebRequest
+DEBUG 2017-03-09 12:54:32,031 14276ms HomeController         MoveNext           - HomeController;Index; Siebel Response is Coming
+DEBUG 2017-03-09 12:54:32,031 14276ms HomeController         MoveNext           - HomeController;Index; Session logger:1-26SRBH7 Task Duartion: Req Duration:
+DEBUG 2017-03-09 12:54:32,121 14366ms HomeController         CallSite.Target    - HomeController;Index; Session logger:1-26SRBH7 View Bag Task Duartion: 65
+DEBUG 2017-03-09 12:54:32,124 14369ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI =https://maps.googleapis.com/maps/api/place/textsearch/xml?query=%20H%C3%A0%20N%E1%BB%99i%2C%20Viet%20Nam%2C%20100000&key=AIzaSyAwOexOS-iDaup1-76j6ChVvlVBEIyaHQoEnd of Creating URI for GoogleAddressAPI
+DEBUG 2017-03-09 12:54:32,124 14369ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI using WebRequest: Request=System.Net.HttpWebRequest End
+DEBUG 2017-03-09 12:54:32,513 14758ms riesTimeZoneConversion GoogleAddressCall  - Getting the response from GoogleAddressAPI using GetResponse method
+DEBUG 2017-03-09 12:54:32,525 14770ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleLatLongAPI using WebRequest:request1=System.Net.HttpWebRequest
+DEBUG 2017-03-09 12:54:32,794 15039ms riesTimeZoneConversion GoogleAddressCall  - Getting the response of GoogleLatLongAPI using WebRequest
+DEBUG 2017-03-09 12:54:32,795 15040ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI =https://maps.googleapis.com/maps/api/place/textsearch/xml?query=%20H%C3%A0%20N%E1%BB%99i%2C%20Viet%20Nam%2C%20100000&key=AIzaSyAwOexOS-iDaup1-76j6ChVvlVBEIyaHQoEnd of Creating URI for GoogleAddressAPI
+DEBUG 2017-03-09 12:54:32,795 15040ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI using WebRequest: Request=System.Net.HttpWebRequest End
+DEBUG 2017-03-09 12:54:33,243 15488ms riesTimeZoneConversion GoogleAddressCall  - Getting the response from GoogleAddressAPI using GetResponse method
+DEBUG 2017-03-09 12:54:33,255 15500ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleLatLongAPI using WebRequest:request1=System.Net.HttpWebRequest
+DEBUG 2017-03-09 12:54:33,521 15766ms riesTimeZoneConversion GoogleAddressCall  - Getting the response of GoogleLatLongAPI using WebRequest
+DEBUG 2017-03-09 12:54:33,522 15767ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI =https://maps.googleapis.com/maps/api/place/textsearch/xml?query=%20H%C3%A0%20N%E1%BB%99i%2C%20Viet%20Nam%2C%20100000&key=AIzaSyAwOexOS-iDaup1-76j6ChVvlVBEIyaHQoEnd of Creating URI for GoogleAddressAPI
+DEBUG 2017-03-09 12:54:33,522 15767ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI using WebRequest: Request=System.Net.HttpWebRequest End
+DEBUG 2017-03-09 12:54:33,889 16134ms riesTimeZoneConversion GoogleAddressCall  - Getting the response from GoogleAddressAPI using GetResponse method
+DEBUG 2017-03-09 12:54:33,895 16140ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleLatLongAPI using WebRequest:request1=System.Net.HttpWebRequest
+DEBUG 2017-03-09 12:54:34,169 16414ms riesTimeZoneConversion GoogleAddressCall  - Getting the response of GoogleLatLongAPI using WebRequest
+DEBUG 2017-03-09 12:54:34,169 16414ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI =https://maps.googleapis.com/maps/api/place/textsearch/xml?query=%20H%C3%A0%20N%E1%BB%99i%2C%20Viet%20Nam%2C%20100000&key=AIzaSyAwOexOS-iDaup1-76j6ChVvlVBEIyaHQoEnd of Creating URI for GoogleAddressAPI
+DEBUG 2017-03-09 12:54:34,169 16414ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleAddressAPI using WebRequest: Request=System.Net.HttpWebRequest End
+DEBUG 2017-03-09 12:54:34,533 16778ms riesTimeZoneConversion GoogleAddressCall  - Getting the response from GoogleAddressAPI using GetResponse method
+DEBUG 2017-03-09 12:54:34,540 16785ms riesTimeZoneConversion GoogleAddressCall  - Creating URI of GoogleLatLongAPI using WebRequest:request1=System.Net.HttpWebRequest
+DEBUG 2017-03-09 12:54:34,813 17058ms riesTimeZoneConversion GoogleAddressCall  - Getting the response of GoogleLatLongAPI using WebRequest
+DEBUG 2017-03-09 12:54:34,814 17059ms HomeController         MoveNext           - HomeController;Index; End
+DEBUG 2017-03-09 12:54:37,230 19475ms SessionExpireAttribute OnActionExecuting  - ---------------------START-------------------------------------------- 
+DEBUG 2017-03-09 12:54:37,230 19475ms SessionExpireAttribute OnActionExecuting  - SessionExpire;OnActionExecuting; Start from here;
+DEBUG 2017-03-09 12:54:37,231 19476ms SessionExpireAttribute OnActionExecuting  - NewSDTApplication.Models.HTTPPostParams
+DEBUG 2017-03-09 12:54:37,231 19476ms SessionExpireAttribute OnActionExecuting  - 
+DEBUG 2017-03-09 12:54:37,231 19476ms SessionExpireAttribute OnActionExecuting  - SessionExpire;OnActionExecuting; ACTIVITY_ID  End hit;
+DEBUG 2017-03-09 12:54:37,231 19476ms SessionExpireAttribute OnActionExecuting  - ---------------------------END-------------------------------------- 
+DEBUG 2017-03-09 12:54:37,240 19485ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:38,795 21041ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:39,224 21470ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; Start
+DEBUG 2017-03-09 12:54:39,225 21471ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:39,226 21472ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:39,682 21928ms CallClickSerrvice      MoveNext           - In ClickCallService.cs GetTasksRequestByPropertyName Method,after index inclusion455
+DEBUG 2017-03-09 12:54:39,683 21929ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; End
+DEBUG 2017-03-09 12:54:39,914 22160ms SessionExpireAttribute OnActionExecuting  - ---------------------START-------------------------------------------- 
+DEBUG 2017-03-09 12:54:39,914 22160ms SessionExpireAttribute OnActionExecuting  - SessionExpire;OnActionExecuting; Start from here;
+DEBUG 2017-03-09 12:54:39,914 22160ms SessionExpireAttribute OnActionExecuting  - NewSDTApplication.Models.HTTPPostParams
+DEBUG 2017-03-09 12:54:39,914 22160ms SessionExpireAttribute OnActionExecuting  - 
+DEBUG 2017-03-09 12:54:39,915 22161ms SessionExpireAttribute OnActionExecuting  - SessionExpire;OnActionExecuting; ACTIVITY_ID  End hit;
+DEBUG 2017-03-09 12:54:39,915 22161ms SessionExpireAttribute OnActionExecuting  - ---------------------------END-------------------------------------- 
+DEBUG 2017-03-09 12:54:39,919 22165ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; Start
+DEBUG 2017-03-09 12:54:39,921 22167ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:41,408 23654ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:41,854 24099ms CallClickSerrvice      MoveNext           - In ClickCallService.cs GetTasksRequestByPropertyName Method,after index inclusion444
+DEBUG 2017-03-09 12:54:41,855 24100ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; End
+DEBUG 2017-03-09 12:54:41,856 24101ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; Start
+DEBUG 2017-03-09 12:54:41,856 24101ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:41,856 24101ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:43,251 25496ms CallClickSerrvice      MoveNext           - In ClickCallService.cs GetTasksRequestByPropertyName Method,after index inclusion1394
+DEBUG 2017-03-09 12:54:43,251 25496ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; End
+DEBUG 2017-03-09 12:54:43,251 25496ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; Start
+DEBUG 2017-03-09 12:54:43,251 25496ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; Start
+DEBUG 2017-03-09 12:54:43,251 25496ms CallClickSerrvice      penConnectionToSDT - CallClickSerrvice.cs;OpenConnectionToSDT; End
+DEBUG 2017-03-09 12:54:44,252 26497ms CallClickSerrvice      MoveNext           - In ClickCallService.cs GetTasksRequestByPropertyName Method,after index inclusion999
+DEBUG 2017-03-09 12:54:44,252 26497ms CallClickSerrvice      MoveNext           - CallClickSerrvice.cs;GetTasksRequestByPropertyName; End

@@ -1,0 +1,977 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:ckswopt="http://www.clicksoftware.com/OptionalParameters" xmlns:tns="http://www.clicksoftware.com" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.clicksoftware.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.clicksoftware.com/Imports">
+      <xsd:import schemaLocation="https://gehc-stg-so.clicksoftware.com/SO/IntegrationServices/ServiceOptimizationService.svc?xsd=xsd0" namespace="http://www.clicksoftware.com" />
+    </xsd:schema>
+    <xs:schema xmlns="http://www.clicksoftware.com/OptionalParameters" xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.clicksoftware.com/OptionalParameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="OptionalParameters">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="CallerIdentity" type="xs:string" />
+            <xs:element name="ErrorOnNonExistingDictionaries" type="xs:boolean" />
+            <xs:element name="ExtraData">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="Item">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element name="Key" type="xs:string" />
+                        <xs:element name="Value" type="xs:string" />
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceOptimizationService_ObjectReferencingOperations_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObjectReferencingOperations" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ObjectReferencingOperations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObjectReferencingOperationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_EngineerGetCandidatesTasks_InputMessage">
+    <wsdl:part name="parameters" element="tns:EngineerGetCandidatesTasks" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_EngineerGetCandidatesTasks_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EngineerGetCandidatesTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNextValidStatuses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextValidStatuses" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNextValidStatuses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNextValidStatusesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_SetStatusFlow_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetStatusFlow" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_SetStatusFlow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetStatusFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteStatusFlow_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStatusFlow" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteStatusFlow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStatusFlowResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAllowedStatusFlowTransitions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllowedStatusFlowTransitions" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAllowedStatusFlowTransitions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllowedStatusFlowTransitionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserStatusFlowTransitions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatusFlowTransitions" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserStatusFlowTransitions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserStatusFlowTransitionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CalculateRelatedObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateRelatedObject" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CalculateRelatedObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateRelatedObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeAccountStatement_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeAccountStatement" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeAccountStatement_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeAccountStatementResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ButlerGetTypesMapper_InputMessage">
+    <wsdl:part name="parameters" element="tns:ButlerGetTypesMapper" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ButlerGetTypesMapper_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ButlerGetTypesMapperResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteNonAvailability_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNonAvailability" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteNonAvailability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteNonAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckSoftwareUpdates_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSoftwareUpdates" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckSoftwareUpdates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSoftwareUpdatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckServerHealth_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckServerHealth" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckServerHealth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckServerHealthResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_TestConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnection" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_TestConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAgentsStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentsStatus" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAgentsStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentsStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAddressGeocode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddressGeocode" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAddressGeocode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddressGeocodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteAgent_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteAgent" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteAgent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_StopAgent_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopAgent" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_StopAgent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopAgentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetServerTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerTime" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetServerTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServerTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAgentOperations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentOperations" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAgentOperations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgentOperationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetLogicDomain_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogicDomain" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetLogicDomain_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogicDomainResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_StopPolling_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopPolling" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_StopPolling_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopPollingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetPollingStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPollingStatus" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetPollingStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPollingStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetServicesDescription_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesDescription" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetServicesDescription_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServicesDescriptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_Dispatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:Dispatch" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_Dispatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DispatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDefaultRouteParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultRouteParameters" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDefaultRouteParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultRouteParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDefaultRouteParametersWithKeys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultRouteParametersWithKeys" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDefaultRouteParametersWithKeys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDefaultRouteParametersWithKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithKeysAndParams_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithKeysAndParams" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithKeysAndParams_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithKeysAndParamsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithKeys_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithKeys" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithKeys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithLocations" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithNarrativeWithKeys_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithNarrativeWithKeys" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithNarrativeWithKeys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithNarrativeWithKeysResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithNarrativeWithLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithNarrativeWithLocations" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_QueryRouteWithNarrativeWithLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRouteWithNarrativeWithLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ResetPredictiveTravelCache_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPredictiveTravelCache" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ResetPredictiveTravelCache_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPredictiveTravelCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GenerateOutgoingMessagesXmlSchema_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateOutgoingMessagesXmlSchema" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GenerateOutgoingMessagesXmlSchema_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateOutgoingMessagesXmlSchemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAlerts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlerts" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAlerts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAlertsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetAlertsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlertsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNotifications_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotifications" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNotifications_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNotificationsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNotificationsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNotificationsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollections_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollections" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollections_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollectionsScheme_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollectionsScheme" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollectionsScheme_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollectionsSchemeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollectionIndexes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollectionIndexes" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCollectionIndexes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCollectionIndexesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSettings" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeZones_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZones" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeZones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeZonesEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetTimeZonesEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSchemeModeInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchemeModeInfo" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSchemeModeInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSchemeModeInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateCalendar_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCalendar" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateCalendar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateCalendarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteCalendar_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCalendar" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteCalendar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCalendarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendar_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendar" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarIntervals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarIntervals" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarIntervals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarIntervalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarIntervalsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarIntervalsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarIntervalsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarIntervalsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsIntervals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsIntervals" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsIntervals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsIntervalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsIntervalsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsIntervalsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsIntervalsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsIntervalsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateCalendar_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendar" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateCalendar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendarResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendars_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendars" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendars_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsLogicalIntervals_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsLogicalIntervals" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsLogicalIntervals_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsLogicalIntervalsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsLogicalIntervalsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsLogicalIntervalsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetCalendarsLogicalIntervalsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCalendarsLogicalIntervalsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateCalendars_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendars" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateCalendars_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCalendarsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckTimePhasedWeeklyLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckTimePhasedWeeklyLevel" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CheckTimePhasedWeeklyLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckTimePhasedWeeklyLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResource" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResource" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResource" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResources_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResources" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResources_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateResource_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResource" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateResource_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateResourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResourcesGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourcesGroups" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResourcesGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourcesGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResourceByLoginProperty_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceByLoginProperty" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetResourceByLoginProperty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResourceByLoginPropertyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateNonAvailability_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNonAvailability" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateNonAvailability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNonAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateDictionaryItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDictionaryItem" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateDictionaryItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDictionaryItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteDictionaryItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDictionaryItem" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteDictionaryItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDictionaryItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateDictionaryItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDictionaryItem" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateDictionaryItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDictionaryItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItem_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItem" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryTypes" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItemChildren_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItemChildren" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItemChildren_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItemChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItemParents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItemParents" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetDictionaryItemParents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDictionaryItemParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNavigationTree_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNavigationTree" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetNavigationTree_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNavigationTreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteOperation_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteOperation" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteOperation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteOperationResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteMultipleOperations_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteMultipleOperations" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ExecuteMultipleOperations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteMultipleOperationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjectsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsEx" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjectsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetReferencedObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReferencedObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetReferencedObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReferencedObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_SetReferencedObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetReferencedObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_SetReferencedObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetReferencedObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CountObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:CountObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CountObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CountObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteObjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObjects" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteObjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteObjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ConvertDates_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDates" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_ConvertDates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjectsReferences_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsReferences" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetObjectsReferences_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectsReferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSettings" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_GetUserSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateUserSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_UpdateUserSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteUserSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_DeleteUserSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateUserSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserSetting" />
+  </wsdl:message>
+  <wsdl:message name="ServiceOptimizationService_CreateUserSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateUserSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="OptionalParameters">
+    <wsdl:part name="Header" element="ckswopt:OptionalParameters" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceOptimizationService">
+    <wsdl:operation name="ObjectReferencingOperations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ObjectReferencingOperations" message="tns:ServiceOptimizationService_ObjectReferencingOperations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ObjectReferencingOperationsResponse" message="tns:ServiceOptimizationService_ObjectReferencingOperations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EngineerGetCandidatesTasks">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/EngineerGetCandidatesTasks" message="tns:ServiceOptimizationService_EngineerGetCandidatesTasks_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/EngineerGetCandidatesTasksResponse" message="tns:ServiceOptimizationService_EngineerGetCandidatesTasks_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNextValidStatuses">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNextValidStatuses" message="tns:ServiceOptimizationService_GetNextValidStatuses_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNextValidStatusesResponse" message="tns:ServiceOptimizationService_GetNextValidStatuses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetStatusFlow">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/SetStatusFlow" message="tns:ServiceOptimizationService_SetStatusFlow_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/SetStatusFlowResponse" message="tns:ServiceOptimizationService_SetStatusFlow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStatusFlow">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteStatusFlow" message="tns:ServiceOptimizationService_DeleteStatusFlow_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteStatusFlowResponse" message="tns:ServiceOptimizationService_DeleteStatusFlow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllowedStatusFlowTransitions">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAllowedStatusFlowTransitions" message="tns:ServiceOptimizationService_GetAllowedStatusFlowTransitions_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAllowedStatusFlowTransitionsResponse" message="tns:ServiceOptimizationService_GetAllowedStatusFlowTransitions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserStatusFlowTransitions">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserStatusFlowTransitions" message="tns:ServiceOptimizationService_GetUserStatusFlowTransitions_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserStatusFlowTransitionsResponse" message="tns:ServiceOptimizationService_GetUserStatusFlowTransitions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateRelatedObject">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CalculateRelatedObject" message="tns:ServiceOptimizationService_CalculateRelatedObject_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CalculateRelatedObjectResponse" message="tns:ServiceOptimizationService_CalculateRelatedObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeAccountStatement">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeAccountStatement" message="tns:ServiceOptimizationService_GetTimeAccountStatement_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeAccountStatementResponse" message="tns:ServiceOptimizationService_GetTimeAccountStatement_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ButlerGetTypesMapper">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ButlerGetTypesMapper" message="tns:ServiceOptimizationService_ButlerGetTypesMapper_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ButlerGetTypesMapperResponse" message="tns:ServiceOptimizationService_ButlerGetTypesMapper_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteNonAvailability">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteNonAvailability" message="tns:ServiceOptimizationService_DeleteNonAvailability_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteNonAvailabilityResponse" message="tns:ServiceOptimizationService_DeleteNonAvailability_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSoftwareUpdates">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckSoftwareUpdates" message="tns:ServiceOptimizationService_CheckSoftwareUpdates_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckSoftwareUpdatesResponse" message="tns:ServiceOptimizationService_CheckSoftwareUpdates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckServerHealth">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckServerHealth" message="tns:ServiceOptimizationService_CheckServerHealth_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckServerHealthResponse" message="tns:ServiceOptimizationService_CheckServerHealth_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConnection">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/TestConnection" message="tns:ServiceOptimizationService_TestConnection_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/TestConnectionResponse" message="tns:ServiceOptimizationService_TestConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentsStatus">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAgentsStatus" message="tns:ServiceOptimizationService_GetAgentsStatus_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAgentsStatusResponse" message="tns:ServiceOptimizationService_GetAgentsStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddressGeocode">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAddressGeocode" message="tns:ServiceOptimizationService_GetAddressGeocode_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAddressGeocodeResponse" message="tns:ServiceOptimizationService_GetAddressGeocode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteAgent">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteAgent" message="tns:ServiceOptimizationService_ExecuteAgent_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteAgentResponse" message="tns:ServiceOptimizationService_ExecuteAgent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopAgent">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/StopAgent" message="tns:ServiceOptimizationService_StopAgent_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/StopAgentResponse" message="tns:ServiceOptimizationService_StopAgent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerTime">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetServerTime" message="tns:ServiceOptimizationService_GetServerTime_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetServerTimeResponse" message="tns:ServiceOptimizationService_GetServerTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgentOperations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAgentOperations" message="tns:ServiceOptimizationService_GetAgentOperations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAgentOperationsResponse" message="tns:ServiceOptimizationService_GetAgentOperations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogicDomain">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetLogicDomain" message="tns:ServiceOptimizationService_GetLogicDomain_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetLogicDomainResponse" message="tns:ServiceOptimizationService_GetLogicDomain_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopPolling">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/StopPolling" message="tns:ServiceOptimizationService_StopPolling_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/StopPollingResponse" message="tns:ServiceOptimizationService_StopPolling_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPollingStatus">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetPollingStatus" message="tns:ServiceOptimizationService_GetPollingStatus_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetPollingStatusResponse" message="tns:ServiceOptimizationService_GetPollingStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServicesDescription">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetServicesDescription" message="tns:ServiceOptimizationService_GetServicesDescription_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetServicesDescriptionResponse" message="tns:ServiceOptimizationService_GetServicesDescription_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Dispatch">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/Dispatch" message="tns:ServiceOptimizationService_Dispatch_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DispatchResponse" message="tns:ServiceOptimizationService_Dispatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultRouteParameters">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDefaultRouteParameters" message="tns:ServiceOptimizationService_GetDefaultRouteParameters_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDefaultRouteParametersResponse" message="tns:ServiceOptimizationService_GetDefaultRouteParameters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultRouteParametersWithKeys">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDefaultRouteParametersWithKeys" message="tns:ServiceOptimizationService_GetDefaultRouteParametersWithKeys_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDefaultRouteParametersWithKeysResponse" message="tns:ServiceOptimizationService_GetDefaultRouteParametersWithKeys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRouteWithKeysAndParams">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithKeysAndParams" message="tns:ServiceOptimizationService_QueryRouteWithKeysAndParams_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithKeysAndParamsResponse" message="tns:ServiceOptimizationService_QueryRouteWithKeysAndParams_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRouteWithKeys">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithKeys" message="tns:ServiceOptimizationService_QueryRouteWithKeys_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithKeysResponse" message="tns:ServiceOptimizationService_QueryRouteWithKeys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRouteWithLocations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithLocations" message="tns:ServiceOptimizationService_QueryRouteWithLocations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithLocationsResponse" message="tns:ServiceOptimizationService_QueryRouteWithLocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRouteWithNarrativeWithKeys">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithNarrativeWithKeys" message="tns:ServiceOptimizationService_QueryRouteWithNarrativeWithKeys_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithNarrativeWithKeysResponse" message="tns:ServiceOptimizationService_QueryRouteWithNarrativeWithKeys_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRouteWithNarrativeWithLocations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithNarrativeWithLocations" message="tns:ServiceOptimizationService_QueryRouteWithNarrativeWithLocations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/QueryRouteWithNarrativeWithLocationsResponse" message="tns:ServiceOptimizationService_QueryRouteWithNarrativeWithLocations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPredictiveTravelCache">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ResetPredictiveTravelCache" message="tns:ServiceOptimizationService_ResetPredictiveTravelCache_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ResetPredictiveTravelCacheResponse" message="tns:ServiceOptimizationService_ResetPredictiveTravelCache_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateOutgoingMessagesXmlSchema">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GenerateOutgoingMessagesXmlSchema" message="tns:ServiceOptimizationService_GenerateOutgoingMessagesXmlSchema_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GenerateOutgoingMessagesXmlSchemaResponse" message="tns:ServiceOptimizationService_GenerateOutgoingMessagesXmlSchema_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlerts">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAlerts" message="tns:ServiceOptimizationService_GetAlerts_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAlertsResponse" message="tns:ServiceOptimizationService_GetAlerts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlertsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAlertsEx" message="tns:ServiceOptimizationService_GetAlertsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetAlertsExResponse" message="tns:ServiceOptimizationService_GetAlertsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotifications">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNotifications" message="tns:ServiceOptimizationService_GetNotifications_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNotificationsResponse" message="tns:ServiceOptimizationService_GetNotifications_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNotificationsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNotificationsEx" message="tns:ServiceOptimizationService_GetNotificationsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNotificationsExResponse" message="tns:ServiceOptimizationService_GetNotificationsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCollections">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollections" message="tns:ServiceOptimizationService_GetCollections_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollectionsResponse" message="tns:ServiceOptimizationService_GetCollections_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCollectionsScheme">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollectionsScheme" message="tns:ServiceOptimizationService_GetCollectionsScheme_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollectionsSchemeResponse" message="tns:ServiceOptimizationService_GetCollectionsScheme_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCollectionIndexes">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollectionIndexes" message="tns:ServiceOptimizationService_GetCollectionIndexes_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCollectionIndexesResponse" message="tns:ServiceOptimizationService_GetCollectionIndexes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSettings">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSettings" message="tns:ServiceOptimizationService_GetSettings_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSettingsResponse" message="tns:ServiceOptimizationService_GetSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeZones" message="tns:ServiceOptimizationService_GetTimeZones_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeZonesResponse" message="tns:ServiceOptimizationService_GetTimeZones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZonesEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeZonesEx" message="tns:ServiceOptimizationService_GetTimeZonesEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetTimeZonesExResponse" message="tns:ServiceOptimizationService_GetTimeZonesEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSchemeModeInfo">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSchemeModeInfo" message="tns:ServiceOptimizationService_GetSchemeModeInfo_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSchemeModeInfoResponse" message="tns:ServiceOptimizationService_GetSchemeModeInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCalendar">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateCalendar" message="tns:ServiceOptimizationService_CreateCalendar_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateCalendarResponse" message="tns:ServiceOptimizationService_CreateCalendar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCalendar">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteCalendar" message="tns:ServiceOptimizationService_DeleteCalendar_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteCalendarResponse" message="tns:ServiceOptimizationService_DeleteCalendar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendar">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendar" message="tns:ServiceOptimizationService_GetCalendar_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarResponse" message="tns:ServiceOptimizationService_GetCalendar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarIntervals">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarIntervals" message="tns:ServiceOptimizationService_GetCalendarIntervals_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarIntervalsResponse" message="tns:ServiceOptimizationService_GetCalendarIntervals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarIntervalsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarIntervalsEx" message="tns:ServiceOptimizationService_GetCalendarIntervalsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarIntervalsExResponse" message="tns:ServiceOptimizationService_GetCalendarIntervalsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarsIntervals">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsIntervals" message="tns:ServiceOptimizationService_GetCalendarsIntervals_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsIntervalsResponse" message="tns:ServiceOptimizationService_GetCalendarsIntervals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarsIntervalsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsIntervalsEx" message="tns:ServiceOptimizationService_GetCalendarsIntervalsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsIntervalsExResponse" message="tns:ServiceOptimizationService_GetCalendarsIntervalsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCalendar">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateCalendar" message="tns:ServiceOptimizationService_UpdateCalendar_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateCalendarResponse" message="tns:ServiceOptimizationService_UpdateCalendar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendars">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendars" message="tns:ServiceOptimizationService_GetCalendars_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsResponse" message="tns:ServiceOptimizationService_GetCalendars_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarsLogicalIntervals">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsLogicalIntervals" message="tns:ServiceOptimizationService_GetCalendarsLogicalIntervals_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsLogicalIntervalsResponse" message="tns:ServiceOptimizationService_GetCalendarsLogicalIntervals_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCalendarsLogicalIntervalsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsLogicalIntervalsEx" message="tns:ServiceOptimizationService_GetCalendarsLogicalIntervalsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetCalendarsLogicalIntervalsExResponse" message="tns:ServiceOptimizationService_GetCalendarsLogicalIntervalsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCalendars">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateCalendars" message="tns:ServiceOptimizationService_UpdateCalendars_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateCalendarsResponse" message="tns:ServiceOptimizationService_UpdateCalendars_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTimePhasedWeeklyLevel">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckTimePhasedWeeklyLevel" message="tns:ServiceOptimizationService_CheckTimePhasedWeeklyLevel_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CheckTimePhasedWeeklyLevelResponse" message="tns:ServiceOptimizationService_CheckTimePhasedWeeklyLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateResource">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateResource" message="tns:ServiceOptimizationService_CreateResource_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateResourceResponse" message="tns:ServiceOptimizationService_CreateResource_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteResource">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteResource" message="tns:ServiceOptimizationService_DeleteResource_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteResourceResponse" message="tns:ServiceOptimizationService_DeleteResource_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResource">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResource" message="tns:ServiceOptimizationService_GetResource_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourceResponse" message="tns:ServiceOptimizationService_GetResource_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResources">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResources" message="tns:ServiceOptimizationService_GetResources_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourcesResponse" message="tns:ServiceOptimizationService_GetResources_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateResource">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateResource" message="tns:ServiceOptimizationService_UpdateResource_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateResourceResponse" message="tns:ServiceOptimizationService_UpdateResource_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResourcesGroups">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourcesGroups" message="tns:ServiceOptimizationService_GetResourcesGroups_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourcesGroupsResponse" message="tns:ServiceOptimizationService_GetResourcesGroups_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetResourceByLoginProperty">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourceByLoginProperty" message="tns:ServiceOptimizationService_GetResourceByLoginProperty_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetResourceByLoginPropertyResponse" message="tns:ServiceOptimizationService_GetResourceByLoginProperty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNonAvailability">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateNonAvailability" message="tns:ServiceOptimizationService_CreateNonAvailability_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateNonAvailabilityResponse" message="tns:ServiceOptimizationService_CreateNonAvailability_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDictionaryItem">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateDictionaryItem" message="tns:ServiceOptimizationService_CreateDictionaryItem_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateDictionaryItemResponse" message="tns:ServiceOptimizationService_CreateDictionaryItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDictionaryItem">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteDictionaryItem" message="tns:ServiceOptimizationService_DeleteDictionaryItem_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteDictionaryItemResponse" message="tns:ServiceOptimizationService_DeleteDictionaryItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDictionaryItem">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateDictionaryItem" message="tns:ServiceOptimizationService_UpdateDictionaryItem_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateDictionaryItemResponse" message="tns:ServiceOptimizationService_UpdateDictionaryItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryItem">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItem" message="tns:ServiceOptimizationService_GetDictionaryItem_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItemResponse" message="tns:ServiceOptimizationService_GetDictionaryItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryTypes">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryTypes" message="tns:ServiceOptimizationService_GetDictionaryTypes_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryTypesResponse" message="tns:ServiceOptimizationService_GetDictionaryTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryItemChildren">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItemChildren" message="tns:ServiceOptimizationService_GetDictionaryItemChildren_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItemChildrenResponse" message="tns:ServiceOptimizationService_GetDictionaryItemChildren_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryItemParents">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItemParents" message="tns:ServiceOptimizationService_GetDictionaryItemParents_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetDictionaryItemParentsResponse" message="tns:ServiceOptimizationService_GetDictionaryItemParents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNavigationTree">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNavigationTree" message="tns:ServiceOptimizationService_GetNavigationTree_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetNavigationTreeResponse" message="tns:ServiceOptimizationService_GetNavigationTree_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteOperation">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteOperation" message="tns:ServiceOptimizationService_ExecuteOperation_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteOperationResponse" message="tns:ServiceOptimizationService_ExecuteOperation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteMultipleOperations">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteMultipleOperations" message="tns:ServiceOptimizationService_ExecuteMultipleOperations_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ExecuteMultipleOperationsResponse" message="tns:ServiceOptimizationService_ExecuteMultipleOperations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjects" message="tns:ServiceOptimizationService_GetObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjectsResponse" message="tns:ServiceOptimizationService_GetObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectsEx">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjectsEx" message="tns:ServiceOptimizationService_GetObjectsEx_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjectsExResponse" message="tns:ServiceOptimizationService_GetObjectsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferencedObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetReferencedObjects" message="tns:ServiceOptimizationService_GetReferencedObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetReferencedObjectsResponse" message="tns:ServiceOptimizationService_GetReferencedObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetReferencedObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/SetReferencedObjects" message="tns:ServiceOptimizationService_SetReferencedObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/SetReferencedObjectsResponse" message="tns:ServiceOptimizationService_SetReferencedObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CountObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CountObjects" message="tns:ServiceOptimizationService_CountObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CountObjectsResponse" message="tns:ServiceOptimizationService_CountObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateObjects" message="tns:ServiceOptimizationService_UpdateObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateObjectsResponse" message="tns:ServiceOptimizationService_UpdateObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteObjects">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteObjects" message="tns:ServiceOptimizationService_DeleteObjects_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteObjectsResponse" message="tns:ServiceOptimizationService_DeleteObjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertDates">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ConvertDates" message="tns:ServiceOptimizationService_ConvertDates_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/ConvertDatesResponse" message="tns:ServiceOptimizationService_ConvertDates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectsReferences">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjectsReferences" message="tns:ServiceOptimizationService_GetObjectsReferences_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetObjectsReferencesResponse" message="tns:ServiceOptimizationService_GetObjectsReferences_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSetting" message="tns:ServiceOptimizationService_GetSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetSettingResponse" message="tns:ServiceOptimizationService_GetSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserSetting" message="tns:ServiceOptimizationService_GetUserSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserSettingResponse" message="tns:ServiceOptimizationService_GetUserSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSettings">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserSettings" message="tns:ServiceOptimizationService_GetUserSettings_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/GetUserSettingsResponse" message="tns:ServiceOptimizationService_GetUserSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateSetting" message="tns:ServiceOptimizationService_UpdateSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateSettingResponse" message="tns:ServiceOptimizationService_UpdateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateUserSetting" message="tns:ServiceOptimizationService_UpdateUserSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/UpdateUserSettingResponse" message="tns:ServiceOptimizationService_UpdateUserSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteSetting" message="tns:ServiceOptimizationService_DeleteSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteSettingResponse" message="tns:ServiceOptimizationService_DeleteSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUserSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteUserSetting" message="tns:ServiceOptimizationService_DeleteUserSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/DeleteUserSettingResponse" message="tns:ServiceOptimizationService_DeleteUserSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateSetting" message="tns:ServiceOptimizationService_CreateSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateSettingResponse" message="tns:ServiceOptimizationService_CreateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUserSetting">
+      <wsdl:input wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateUserSetting" message="tns:ServiceOptimizationService_CreateUserSetting_InputMessage" />
+      <wsdl:output wsam:Action="http://www.clicksoftware.com/ServiceOptimizationService/CreateUserSettingResponse" message="tns:ServiceOptimizationService_CreateUserSetting_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
